@@ -82,6 +82,16 @@ h2 {
     color: #800000;
 }
 
+/* Style the text in create account */
+.createAccountText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 /* Style the footer copyright text */
 .smallText {
     font-family: Arial, Helvetica, sans-serif;
@@ -128,12 +138,6 @@ h2 {
     background-size: cover;
 }
 
-/* Style the pizza topping image */
-.toppingImage {
-    object-fit: cover;
-    width: 64px;
-    height: 64px;
-}
 
 /* Left align text */
 .leftAlign {
@@ -145,6 +149,19 @@ h2 {
     text-align: right;
 }
 
+/* Used in CreateAccount, EditAccount, SignIn, and Profile */
+.accountColumn1, .signInColumn1, .profileColumn1 {
+    text-align: right;
+    background-color: #3e7e98;   /* Darker blueish teal */
+    white-space: nowrap;  /* Disallow line break */
+}
+
+/* Used in CreateAccount and EditAccount */
+.accountColumn2, .signInColumn2, .profileColumn2 {
+    text-align: left;
+    background-color: #519ab8;   /* Lighter blueish teal */
+    white-space: nowrap;  /* Disallow line break */
+}
 /*
 ==================
 Styling Hyperlinks

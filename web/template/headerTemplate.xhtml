@@ -49,80 +49,86 @@
                     -->
                     <p:growl id="messages" life="5000" />
 
-                    <p:menubar>
+                    <p:menubar style="text-align: center">
                         <!-- The file index.xhtml is at the root level; therefore, we just specify its filename -->
-                        <p:menuitem value="Home" outcome="index" icon="ui-icon-home" ajax="false" />
 
-                        <p:menuitem value="Sign In" outcome="SignIn" icon="ui-icon-plus" ajax="false" />
-
-                        <p:submenu label="Browse" icon="ui-icon-heart">
-                            <p:menuitem value="Browse 1" outcome="Browse" ajax="false"/>
-                            <p:menuitem value="Browse 2" outcome="Browse" ajax="false"/>
-                            <p:menuitem value="Browse 3" outcome="Browse" ajax="false"/>
-                            <p:menuitem value="Browse 4" outcome="Browse" ajax="false"/>
-                            <p:menuitem value="Browse 5" outcome="Browse" ajax="false"/>
-                            
-                        </p:submenu>
-                        <!-- 
-                        *** For ease of navigation ***, 
-                        place the Create, Edit, List, View, Search, and SearchResults files at the root level.
-                        The file List.xhtml is at the root level; therefore, we just specify its filename.
-                        -->
-
-
-                        <!-- "Sign In" and "Create an Account" if no user is signed in -->
-                        <!-- "Sign Out" and "My Account" if a user is signed in
+                       <!--
                         <c:if test="#{accountManager.isLoggedIn() == true}">
-                            <p:menuitem value="Sign Out" action="#{accountManager.logout()}" icon="ui-icon-arrowthick-1-w" ajax="false" />
-                            <p:menuitem value="My Account" outcome="Profile" icon="ui-icon-person" ajax="false" />
+                            <p:menuitem value="Sign Out" outcome="index" icon="ui-icon-plus" ajax="false" />
+                            <p:menuitem value="My Account" outcome="MyAccount" icon="ui-con-plus" ajax="false" />
+                            
                         </c:if>
                         <c:if test="#{accountManager.isLoggedIn() == false}">
-                            <p:menuitem value="Sign In" outcome="SignIn" icon="ui-icon-arrowthick-1-e" ajax="false" />
-                            <p:menuitem value="Create an Account" outcome="CreateAccount" icon="ui-icon-plus" ajax="false" />
-                        </c:if>
-
-
-                        <p:submenu label="Pizza Hut" icon="ui-icon-heart">
-
-                            <c:if test="#{accountManager.isLoggedIn() == true}">
-                                <p:menuitem value="Order Online" outcome="PrepareOrder" ajax="false" />
+                       -->
+                            <p:menuitem value="Sign In" outcome="SignIn" icon="ui-icon-plus" ajax="false" />
+                            <p:menuitem value="Create an Account" outcome="CreateAnAccount" icon="ui-icon-plus" ajax="false" />
+                        <!--
                             </c:if>
-                            <c:if test="#{accountManager.isLoggedIn() == false}">
-                                <p:menuitem value="Order Online" outcome="SignIn" ajax="false" />
-                            </c:if>
-
-                            <p:submenu label="Customer" icon="ui-icon-contact">
-                                <p:menuitem value="Contact Us" url="https://order.pizzahut.com/site/contact_us" />
-                                <p:menuitem value="Find a Pizza Hut" url="https://order.pizzahut.com/site/locator" />
-                                <p:menuitem value="eGift Cards" url="https://pizzahutstore.wgiftcard.com/chrome/pizzahut/" />
-                                <p:menuitem value="FAQs" url="https://order.pizzahut.com/faq-help" />
-                            </p:submenu>
-                            <p:submenu label="Nutrition" icon="ui-icon-info">
-                                <p:menuitem value="Nutrition Information" url="https://order.pizzahut.com/nutrition" />
-                                <p:menuitem value="Gluten Free Pizza" url="https://order.pizzahut.com/glutenfree" />
-                            </p:submenu>
-                            <p:submenu label="Policies" icon="ui-icon-flag">
-                                <p:menuitem value="Privacy Policy" url="https://order.pizzahut.com/privacy-policy" />
-                                <p:menuitem value="Terms of Use" url="https://order.pizzahut.com/site/terms" />
-                                <p:menuitem value="Tracking Tags" url="https://order.pizzahut.com/tracking-tags" />
-                            </p:submenu>
-                        </p:submenu>
-
-                        <p:submenu label="About Us" icon="ui-icon-folder-open">
-                            <p:menuitem value="Our Story" url="http://blog.pizzahut.com/our-story/" />
-                            <p:menuitem value="Hut Life Blog" url="http://blog.pizzahut.com/" />
-                            <p:menuitem value="Careers" url="https://jobs.pizzahut.com/" />
-                            <p:menuitem value="Catering" url="https://order.pizzahut.com/site/menu/deals" />
-                            <p:menuitem value="International" url="https://order.pizzahut.com/international" />
-                            <p:menuitem value="Become a Franchisee" url="http://www.pizzahutfranchise.com/" />
-                        </p:submenu>
                         -->
+                        
+                        <p:submenu label="Browse Listings" icon="ui-icon-heart">
+                            <p:menuitem value="Category 1" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 2" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 3" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 4" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 5" outcome="Browse" ajax="false"/>
+
+                        </p:submenu>
+                        <p:menuitem value="Search Listings" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </p:menubar>
                 </h:form>
 
             </h:panelGroup>
         </h:panelGrid>
 
+        
+        <!-- 
+        ====================================================================
+        |  Clicking the LISTING SEARCH link displays this Dialog window for  |
+        |  the user to enter a search query and click the Search button.   |
+        ====================================================================
+        -->
+        <p:dialog position="center center" id="ListingSearchDialog" widgetVar="ListingSearchDialog" 
+                  modal="true" resizable="false" appendTo="@(body)" header="Search Listings" width="300px">
+
+            <h:form id="searchDialogForm">
+                <div align="center" bgcolor="#3e7e98" >
+                    <br />
+                    <h:outputLabel for="searchQueryField" value="Search Listings:" />
+                    <br /><br />
+                    
+                    <!-- 
+                    The search query entered by the user in the inputText field is set to be 
+                    the value of the searchQuery property of the searchedListingController
+                    CDI @Named bean by using the Expression Language.
+                    -->
+                    <h:inputText id="searchQueryField" style="width:200px"
+                                 value="#{searchedListingController.searchQuery}" >
+                    </h:inputText>  
+                    <br /><br /><br />
+                    
+                    <!--  SEARCH button:
+                    Clicking the Search button invokes the performSearch() method of the
+                    searchedListingController CDI @Named bean. The performSearch() method executes
+                    the search for the searchQuery property value and at the end of the execution with
+                    
+                        return "ListingSearchResults?faces-redirect=true";
+                    
+                    it returns "ListingSearchResults" as the name of the XHTML file to display.
+                    -->
+                    <p:commandButton value="Search" id="searchButton"  ajax="false" 
+                                     styleClass="commandButton" icon="ui-icon-search"
+                                     action="#{searchedListingController.performSearch()}" />
+                    &nbsp;&nbsp;
+                    
+                    <!-- CANCEL button -->
+                    <p:commandButton value="Cancel" onclick="PF('ListingSearchDialog').hide()" 
+                                     styleClass="commandButton" icon="ui-icon-cancel"/>
+                    <br /><br />
+                </div>
+            </h:form>  
+
+        </p:dialog>
     </ui:composition>
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 

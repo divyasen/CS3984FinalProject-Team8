@@ -25,18 +25,18 @@ public final class Constants {
      
 
     */
-    public static final String PHOTOS_ABSOLUTE_PATH = "/home/cloudsd/Weissenberger/UserPhotoStorage/";
+    //public static final String PHOTOS_ABSOLUTE_PATH = "/home/cloudsd/Weissenberger/UserPhotoStorage/";
     /*
  public static final String PHOTOS_ABSOLUTE_PATH = "C:\\Users\\Travis\\UserPhotoStorage\\";
     
     *//*
     Relative path is defined with respect to the Alternate Document Root starting with 'UserPhotoStorage'.
      */
-    public static final String PHOTOS_RELATIVE_PATH = "UserPhotoStorage/";
-    public static final String DEFAULT_PHOTO_RELATIVE_PATH = "UserPhotoStorage/defaultUserPhoto.png";
+    //public static final String PHOTOS_RELATIVE_PATH = "UserPhotoStorage/";
+    //public static final String DEFAULT_PHOTO_RELATIVE_PATH = "UserPhotoStorage/defaultUserPhoto.png";
 
     /* Temporary filename */
-    public static final String TEMP_FILE = "tmp_file";
+    //public static final String TEMP_FILE = "tmp_file";
 
     /* =========== Our Design Decision ===========
         We decided to scale down the user's uploaded photo to 200x200 px,
