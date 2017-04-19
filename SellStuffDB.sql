@@ -1,7 +1,7 @@
-# ------------------------------------------------
-# SQL script to create the SellEverything database
+# -------------------------------------------
+# SQL script to create the SellStuff database
 # Created by Woo Jin Kye
-# ------------------------------------------------
+# -------------------------------------------
 
 /*
 Tables to be dropped must be listed in a logical order based on dependency.
