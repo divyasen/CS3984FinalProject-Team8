@@ -23,12 +23,12 @@ html, body {
     /* background-color: #F5F5DC;   /* Beige */
     /* background-color: #DCDCDC;   /* Gainsboro */
     /* background-color: #FFFFF0;   /* Ivory */
-    background-color: #FAF0E6;   /* Linen */
+    /* background-color: #FAF0E6;   /* Linen */
     /* background-color: #FDF5E6;   /* OldLace */
     /* background-color: #FFEFD5;   /* PapayaWhip */
     /* background-color: #F5DEB3;   /* Wheat */
     /* background-color: #B0E0E6;   /* PowderBlue */
-
+       background-color: #FFFFFF;   /* White */
     /* Stretch the background image to cover the entire screen. 
     This is used only if you choose to display a background image. */
     -webkit-background-size: cover; /* For WebKit */
@@ -210,7 +210,7 @@ Style the div component whose unique id is "header" per reference
 <div id="header"> in siteTemplate.xhtml
 */
 #header {
-    background-color: #DCDCDC;   /* Gainsboro */
+    background-color: #3e7e98;   /* Gainsboro */
     width: 100%;
     height: 84px;
     position: absolute;
