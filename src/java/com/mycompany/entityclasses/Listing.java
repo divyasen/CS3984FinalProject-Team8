@@ -4,6 +4,7 @@
  */
 package com.mycompany.entityclasses;
 
+import com.mycompany.managers.Constants;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Listing.findAll", query = "SELECT l FROM Listing l")
     , @NamedQuery(name = "Listing.findById", query = "SELECT l FROM Listing l WHERE l.id = :id")
     , @NamedQuery(name = "Listing.findByItemName", query = "SELECT l FROM Listing l WHERE l.itemName = :itemName")
+    , @NamedQuery(name = "UserFile.findListingsByUserId", query = "SELECT u FROM Listing u WHERE u.userId.id = :userId")
     , @NamedQuery(name = "Listing.findByPostingDate", query = "SELECT l FROM Listing l WHERE l.postingDate = :postingDate")
     , @NamedQuery(name = "Listing.findByPrice", query = "SELECT l FROM Listing l WHERE l.price = :price")})
 public class Listing implements Serializable {
@@ -172,5 +174,5 @@ public class Listing implements Serializable {
     public String toString() {
         return "com.mycompany.entityclasses.Listing[ id=" + id + " ]";
     }
-    
+   
 }

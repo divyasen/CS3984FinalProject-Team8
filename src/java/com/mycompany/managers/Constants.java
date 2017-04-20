@@ -1,12 +1,12 @@
 /*
- * Created by Travis Weissenberger on 2017.04.19  * 
- * Copyright © 2017 Travis Weissenberger. All rights reserved. * 
+ * Created by Osman Balci on 2017.01.28  * 
+ * Copyright © 2017 Osman Balci. All rights reserved. * 
  */
 package com.mycompany.managers;
 
 /**
  *
- * @author Travis 
+ * @author Balci
  */
 public final class Constants {
 
@@ -19,24 +19,26 @@ public final class Constants {
                 BLOB (binary large object) degrades performance.
             (b) BLOBs increase the database complexity.
     
-        Therefore, we use the following external directory
-        for the storage and retrieval of user's photos.
-     
-     
-
-    */
-    //public static final String PHOTOS_ABSOLUTE_PATH = "/home/cloudsd/Weissenberger/UserPhotoStorage/";
-    /*
- public static final String PHOTOS_ABSOLUTE_PATH = "C:\\Users\\Travis\\UserPhotoStorage\\";
-    
-    *//*
-    Relative path is defined with respect to the Alternate Document Root starting with 'UserPhotoStorage'.
+        Therefore, we use the following two external directories 
+        for the storage and retrieval of user's files.
      */
-    //public static final String PHOTOS_RELATIVE_PATH = "UserPhotoStorage/";
-    //public static final String DEFAULT_PHOTO_RELATIVE_PATH = "UserPhotoStorage/defaultUserPhoto.png";
+    public static final String FILES_ABSOLUTE_PATH = "/home/cloudsd/Sengar/CloudStorage/FileStorage/";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/home/cloudsd/Sengar/CloudStorage/UserPhotoStorage/";
+
+    /*
+    In glassfish-web.xml file, we designated the '/CloudStorage/' directory as the
+    Alternate Document Root directory with the following statement:
+        
+        <property name="alternatedocroot_1" value="from=/CloudStorage/* dir=/Users/Balci" />
+    
+    Relative path is defined with respect to the Alternate Document Root starting with 'CloudStorage'.
+     */
+    public static final String FILES_RELATIVE_PATH = "CloudStorage/FileStorage/";
+    public static final String PHOTOS_RELATIVE_PATH = "CloudStorage/UserPhotoStorage/";
+    public static final String DEFAULT_PHOTO_RELATIVE_PATH = "CloudStorage/UserPhotoStorage/defaultUserPhoto.png";
 
     /* Temporary filename */
-    //public static final String TEMP_FILE = "tmp_file";
+    public static final String TEMP_FILE = "tmp_file";
 
     /* =========== Our Design Decision ===========
         We decided to scale down the user's uploaded photo to 200x200 px,
@@ -46,6 +48,13 @@ public final class Constants {
         very large in size degrading performance.
      */
     public static final Integer THUMBNAIL_SIZE = 200;
+
+    /* United States postal state abbreviations */
+    public static final String[] STATES = {"AK", "AL", "AR", "AZ", "CA", "CO", "CT",
+        "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA",
+        "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM",
+        "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT",
+        "VA", "VI", "VT", "WA", "WI", "WV", "WY"};
 
     /* Security questions to reset password  */
     public static final String[] QUESTIONS = {

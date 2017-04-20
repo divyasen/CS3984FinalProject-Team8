@@ -4,6 +4,7 @@
  */
 package com.mycompany.entityclasses;
 
+import com.mycompany.managers.Constants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ListingPhoto.findAll", query = "SELECT l FROM ListingPhoto l")
     , @NamedQuery(name = "ListingPhoto.findById", query = "SELECT l FROM ListingPhoto l WHERE l.id = :id")
+    , @NamedQuery(name = "ListingPhoto.findPhotosByListingID", query = "SELECT u FROM ListingPhoto u WHERE u.listingId.id = :listingId")
     , @NamedQuery(name = "ListingPhoto.findByExtension", query = "SELECT l FROM ListingPhoto l WHERE l.extension = :extension")})
 public class ListingPhoto implements Serializable {
 
@@ -58,6 +60,12 @@ public class ListingPhoto implements Serializable {
     public ListingPhoto(Integer id, String extension) {
         this.id = id;
         this.extension = extension;
+    }
+    
+    // This method is added to the generated code
+    public ListingPhoto(String fileExtension, Listing id) {
+        this.extension = fileExtension;
+        listingId = id;
     }
 
     public Integer getId() {
@@ -108,5 +116,25 @@ public class ListingPhoto implements Serializable {
     public String toString() {
         return "com.mycompany.entityclasses.ListingPhoto[ id=" + id + " ]";
     }
-    
+
+    public String getPhotoFilename() {
+        return getListingId() + "." + getExtension();
+    }
+
+    public String getThumbnailFileName() {
+        return getListingId() + "_thumbnail." + getExtension();
+    }
+
+    public String getPhotoFilePath() {
+        return Constants.PHOTOS_ABSOLUTE_PATH + getPhotoFilename();
+    }
+
+    public String getThumbnailFilePath() {
+        return Constants.PHOTOS_ABSOLUTE_PATH + getThumbnailFileName();
+    }
+
+    public String getTemporaryFilePath() {
+        return Constants.PHOTOS_ABSOLUTE_PATH + "tmp_file";
+    }
+
 }

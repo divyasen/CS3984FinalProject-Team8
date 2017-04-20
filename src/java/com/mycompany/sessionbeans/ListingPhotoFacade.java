@@ -5,6 +5,7 @@
 package com.mycompany.sessionbeans;
 
 import com.mycompany.entityclasses.ListingPhoto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +28,13 @@ public class ListingPhotoFacade extends AbstractFacade<ListingPhoto> {
     public ListingPhotoFacade() {
         super(ListingPhoto.class);
     }
+ 
+    public List<ListingPhoto> findPhotosByListingID(Integer listingID) {
+
+        return (List<ListingPhoto>) em.createNamedQuery("ListingPhoto.findPhotosByListingID")
+                .setParameter("listingId", listingID)
+                .getResultList();
+    }
+
     
 }

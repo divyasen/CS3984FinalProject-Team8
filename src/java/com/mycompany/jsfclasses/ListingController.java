@@ -22,13 +22,28 @@ import javax.faces.convert.FacesConverter;
 @Named("listingController")
 @SessionScoped
 public class ListingController implements Serializable {
+ @EJB
+    private ListingFacade listingFacade;
 
-    @EJB
-    private com.mycompany.sessionbeans.ListingFacade ejbFacade;
-    private List<Listing> items = null;
+   
+
+    // selected = Selected Listing object
     private Listing selected;
 
+    // items = list of Listing objects
+    private List<Listing> items = null;
+    @EJB
+    private com.mycompany.sessionbeans.ListingFacade ejbFacade;
+
     public ListingController() {
+    }
+
+    public ListingFacade getListingFacade() {
+        return listingFacade;
+    }
+
+    public void setListingFacade(ListingFacade listingFacade) {
+        this.listingFacade = listingFacade;
     }
 
     public Listing getSelected() {

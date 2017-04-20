@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "User")
 @XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
     , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
@@ -47,62 +48,83 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByPhoneNumber", query = "SELECT u FROM User u WHERE u.phoneNumber = :phoneNumber")})
 public class User implements Serializable {
 
+    // User was a reserved keyword in SQL in 1999, but not any more.
+
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the User table in the CloudDriveDB database.
+    ========================================================
+     */
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
     @Column(name = "username")
     private String username;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
     @Column(name = "password")
     private String password;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
     @Column(name = "first_name")
     private String firstName;
+
     @Size(max = 32)
     @Column(name = "middle_name")
     private String middleName;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
     @Column(name = "last_name")
     private String lastName;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "address1")
     private String address1;
+
     @Size(max = 128)
     @Column(name = "address2")
     private String address2;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
     @Column(name = "city")
     private String city;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
     @Column(name = "state")
     private String state;
+    // state was a reserved keyword in SQL in 1999, but not any more.
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "zipcode")
     private String zipcode;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "security_question")
     private int securityQuestion;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
@@ -121,9 +143,16 @@ public class User implements Serializable {
     private String phoneNumber;
     @OneToMany(mappedBy = "userId")
     private Collection<UserPhoto> userPhotoCollection;
+
     @OneToMany(mappedBy = "userId")
     private Collection<Listing> listingCollection;
 
+    /*
+    ===============================================================
+    Class constructors for instantiating a User entity object to
+    represent a row in the User table in the CloudDriveDB database.
+    ===============================================================
+     */
     public User() {
     }
 
@@ -147,6 +176,12 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    /*
+    ======================================================
+    Getter and Setter methods for the attributes (columns)
+    of the User table in the CloudDriveDB database.
+    ======================================================
+     */
     public Integer getId() {
         return id;
     }
@@ -285,6 +320,14 @@ public class User implements Serializable {
         this.listingCollection = listingCollection;
     }
 
+    /*
+    ================
+    Instance Methods
+    ================
+     */
+    /**
+     * @return Generates and returns a hash code value for the object with id
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -292,6 +335,12 @@ public class User implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the User object identified by 'object' is the same as the User object identified by 'id'
+     *
+     * @param object The User object identified by 'object'
+     * @return True if the User 'object' and 'id' are the same; otherwise, return False
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -305,9 +354,12 @@ public class User implements Serializable {
         return true;
     }
 
+    /**
+     * @return the String representation of a User id
+     */
     @Override
     public String toString() {
         return "com.mycompany.entityclasses.User[ id=" + id + " ]";
     }
-    
+
 }
