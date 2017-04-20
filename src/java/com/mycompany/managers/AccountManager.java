@@ -101,6 +101,7 @@ public class AccountManager implements Serializable {
     private String email;
     private String phoneNumber;
 
+    private final String[] listOfStates = Constants.STATES;
     private Map<String, Object> security_questions;
     private String statusMessage;
 
@@ -137,6 +138,9 @@ public class AccountManager implements Serializable {
     Getter and Setter Methods
     =========================
      */
+    public String[] getListOfStates() {
+        return this.listOfStates;
+    }
 
     public String getUsername() {
         return username;
@@ -393,6 +397,7 @@ public class AccountManager implements Serializable {
                 newUser.setSecurityQuestion(securityQuestion);
                 newUser.setSecurityAnswer(securityAnswer);
                 newUser.setEmail(email);
+                newUser.setPhoneNumber(phoneNumber);
                 newUser.setUsername(username);
                 newUser.setPassword(password);
                 
