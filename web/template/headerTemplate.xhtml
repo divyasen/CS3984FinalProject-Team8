@@ -34,14 +34,6 @@
                 together with MenuView.java file. Read its Documentation.
                 -->
                 <h:form>
-                    <!-- Welcome the customer if signed in 
-                    <c:if test="#{accountManager.isLoggedIn() == true}">
-                        <div class="smallText" align="left">Hello, #{accountManager.selected.firstName}</div>
-                    </c:if>
-                    <c:if test="#{accountManager.isLoggedIn() == false}">
-                        <div class="smallText" align="left">Hello, Guest</div>
-                    </c:if>
-                    -->
                     <!--
                         PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere in your JSF page. 
                         The location of growl in a JSF page does not matter since the messages are displayed
@@ -49,39 +41,49 @@
                     -->
                     <p:growl id="messages" life="5000" />
 
-                    <p:menubar style="text-align: center">
-                        <!-- The file index.xhtml is at the root level; therefore, we just specify its filename -->
-
-                       <!--
-                        <c:if test="#{accountManager.isLoggedIn() == true}">
-                            <p:menuitem value="Sign Out" outcome="index" icon="ui-icon-plus" ajax="false" />
-                            <p:menuitem value="My Account" outcome="MyAccount" icon="ui-con-plus" ajax="false" />
-                            
-                        </c:if>
-                        <c:if test="#{accountManager.isLoggedIn() == false}">
-                       -->
-                            <p:menuitem value="Sign In" outcome="SignIn" icon="ui-icon-plus" ajax="false" />
-                            <p:menuitem value="Create an Account" outcome="CreateAnAccount" icon="ui-icon-plus" ajax="false" />
-                        <!--
-                            </c:if>
-                        -->
-                        
-                        <p:submenu label="Browse Listings" icon="ui-icon-heart">
+                    <c:if test="#{accountManager.isLoggedIn() == true}">
+                        <p:button outcome="index" value="Home" icon="ui-icon-home"/>
+                        <p:spacer width="10" height="10" />
+                        <p:menuButton value="Categories">
                             <p:menuitem value="Category 1" outcome="Browse" ajax="false"/>
                             <p:menuitem value="Category 2" outcome="Browse" ajax="false"/>
                             <p:menuitem value="Category 3" outcome="Browse" ajax="false"/>
                             <p:menuitem value="Category 4" outcome="Browse" ajax="false"/>
                             <p:menuitem value="Category 5" outcome="Browse" ajax="false"/>
+                            <p:separator />
+                            <p:menuitem value="All Categories" outcome="Browse" ajax="false"/>
+                        </p:menuButton>
+                        <p:spacer width="7" height="10"/>
+                        <p:button outcome="SignIn" value="Sign In" icon="ui-icon-arrowreturnthick-1-e"/>
+                        <p:spacer width="7" height="10"/>
+                        <p:button outcome="CreateAnAccount" value="Create an Account" icon="ui-icon-person"/>
+                        <p:spacer width="7" height="10"/>
+                        <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
+                    </c:if>
+                    <c:if test="#{accountManager.isLoggedIn() == false}">
+                        <p:button outcome="index" value="Home" icon="ui-icon-home"/>
+                        <p:spacer width="7" height="10"/>
+                        <p:menuButton value="Categories">
+                            <p:menuitem value="Category 1" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 2" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 3" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 4" outcome="Browse" ajax="false"/>
+                            <p:menuitem value="Category 5" outcome="Browse" ajax="false"/>
+                            <p:separator />
+                            <p:menuitem value="All Categories" outcome="Browse" ajax="false"/>
+                        </p:menuButton>
+                        <p:spacer width="7" height="10"/>
+                        <p:button outcome="index" value="Sign Out" icon="ui-icon-arrowreturnthick-1-w"/>
+                        <p:spacer width="7" height="10"/>
+                        <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
+                    </c:if>
 
-                        </p:submenu>
-                        <p:menuitem value="Search Listings" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
-                    </p:menubar>
                 </h:form>
 
             </h:panelGroup>
         </h:panelGrid>
 
-        
+
         <!-- 
         ====================================================================
         |  Clicking the LISTING SEARCH link displays this Dialog window for  |
@@ -96,7 +98,7 @@
                     <br />
                     <h:outputLabel for="searchQueryField" value="Search Listings:" />
                     <br /><br />
-                    
+
                     <!-- 
                     The search query entered by the user in the inputText field is set to be 
                     the value of the searchQuery property of the searchedListingController
@@ -106,7 +108,7 @@
                                  value="#{searchedListingController.searchQuery}" >
                     </h:inputText>  
                     <br /><br /><br />
-                    
+
                     <!--  SEARCH button:
                     Clicking the Search button invokes the performSearch() method of the
                     searchedListingController CDI @Named bean. The performSearch() method executes
@@ -120,7 +122,7 @@
                                      styleClass="commandButton" icon="ui-icon-search"
                                      action="#{searchedListingController.performSearch()}" />
                     &nbsp;&nbsp;
-                    
+
                     <!-- CANCEL button -->
                     <p:commandButton value="Cancel" onclick="PF('ListingSearchDialog').hide()" 
                                      styleClass="commandButton" icon="ui-icon-cancel"/>
