@@ -82,7 +82,7 @@ public class LoginManager implements Serializable {
     public String createUser() {
 
         // Redirect to show the CreateAccount page
-        return "CreateAccount.xhtml?faces-redirect=true";
+        return "CreateAnAccount.xhtml?faces-redirect=true";
     }
 
     public String resetPassword() {
@@ -127,7 +127,7 @@ public class LoginManager implements Serializable {
             initializeSessionMap(user);
 
             // Redirect to show the Profile page
-            return "Profile.xhtml?faces-redirect=true";
+            return "MyProfile.xhtml?faces-redirect=true";
         }
     }
 

@@ -54,9 +54,9 @@
                             <p:menuitem value="All Categories" outcome="Browse" ajax="false"/>
                         </p:menuButton>
                         <p:spacer width="7" height="10"/>
-                        <p:button outcome="SignIn" value="Sign In" icon="ui-icon-arrowreturnthick-1-e"/>
+                        <p:button outcome="MyProfile" value="My Account" icon="ui-icon-person"/>
                         <p:spacer width="7" height="10"/>
-                        <p:button outcome="CreateAnAccount" value="Create an Account" icon="ui-icon-person"/>
+                        <p:button outcome="index" value="Sign Out" icon="ui-icon-arrowreturnthick-1-w" onclick="#{accountManager.logout()}"/>
                         <p:spacer width="7" height="10"/>
                         <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </c:if>
@@ -73,7 +73,9 @@
                             <p:menuitem value="All Categories" outcome="Browse" ajax="false"/>
                         </p:menuButton>
                         <p:spacer width="7" height="10"/>
-                        <p:button outcome="index" value="Sign Out" icon="ui-icon-arrowreturnthick-1-w"/>
+                        <p:button outcome="SignIn" value="Sign In" icon="ui-icon-arrowreturnthick-1-e"/>
+                        <p:spacer width="7" height="10"/>
+                        <p:button outcome="CreateAnAccount" value="Create an Account" icon="ui-icon-person"/>
                         <p:spacer width="7" height="10"/>
                         <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </c:if>

@@ -58,7 +58,7 @@ as long as the user's established HTTP session is alive.
 
 /**
  *
- * @author Travis
+ * @author group 8
  */
 
 /*
