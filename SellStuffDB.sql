@@ -8,7 +8,7 @@ Tables to be dropped must be listed in a logical order based on dependency.
 Listing and UserPhoto depend on User. Therefore, they must be dropped before User.
 ListingPhoto depends on Listing. Therefore, it must be dropped before Listing.
 */
-DROP TABLE IF EXISTS UserPhoto, User, ListingPhoto, Listing;
+DROP TABLE IF EXISTS ListingPhoto, Listing, UserPhoto, User;
 
 /* The User table contains attributes of interest of a User. */
 CREATE TABLE User
