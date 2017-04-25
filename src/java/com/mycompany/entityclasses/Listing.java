@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Listing.findByItemName", query = "SELECT l FROM Listing l WHERE l.itemName = :itemName")
     , @NamedQuery(name = "UserFile.findListingsByUserId", query = "SELECT u FROM Listing u WHERE u.userId.id = :userId")
     , @NamedQuery(name = "Listing.findByPostingDate", query = "SELECT l FROM Listing l WHERE l.postingDate = :postingDate")
-    , @NamedQuery(name = "Listing.findByPrice", query = "SELECT l FROM Listing l WHERE l.price = :price")})
+    , @NamedQuery(name = "Listing.findByPrice", query = "SELECT l FROM Listing l WHERE l.price = :price")
+    , @NamedQuery(name = "Listing.findByCategory", query = "SELECT l FROM Listing l WHERE l.category = :category")
+})
 public class Listing implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,6 +76,11 @@ public class Listing implements Serializable {
     private BigDecimal price;
     @OneToMany(mappedBy = "listingId")
     private Collection<ListingPhoto> listingPhotoCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "category")
+    private String category;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
@@ -85,12 +92,13 @@ public class Listing implements Serializable {
         this.id = id;
     }
 
-    public Listing(Integer id, String itemName, String description, Date postingDate, BigDecimal price) {
+    public Listing(Integer id, String itemName, String description, Date postingDate, BigDecimal price, String Category) {
         this.id = id;
         this.itemName = itemName;
         this.description = description;
         this.postingDate = postingDate;
         this.price = price;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -131,6 +139,14 @@ public class Listing implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @XmlTransient
@@ -174,5 +190,5 @@ public class Listing implements Serializable {
     public String toString() {
         return "com.mycompany.entityclasses.Listing[ id=" + id + " ]";
     }
-   
+
 }
