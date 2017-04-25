@@ -42,6 +42,8 @@ public class ListingManager implements Serializable {
     private Date postingDate;
 
     private BigDecimal price;
+    
+    private String category;
 
     private Listing selected;
 
@@ -86,6 +88,14 @@ public class ListingManager implements Serializable {
         this.price = price;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
     public Listing getSelected() {
         return selected;
     }
@@ -117,6 +127,7 @@ public class ListingManager implements Serializable {
         newListing.setDescription(description);
         newListing.setPostingDate(postingDate);
         newListing.setPrice(price);
+        newListing.setCategory(category);
         
         getListingFacade().create(newListing);
         
