@@ -28,7 +28,7 @@ html, body {
     /* background-color: #FFEFD5;   /* PapayaWhip */
     /* background-color: #F5DEB3;   /* Wheat */
     /* background-color: #B0E0E6;   /* PowderBlue */
-       background-color: #FFFFFF;   /* White */
+    background-color: #FFFFFF;   /* White */
     /* Stretch the background image to cover the entire screen. 
     This is used only if you choose to display a background image. */
     -webkit-background-size: cover; /* For WebKit */
@@ -37,7 +37,7 @@ html, body {
     background-size: cover;         /* Generic */
     background-repeat: no-repeat;   /* Do not repeat the image */
 
-    width: 100%;                    /* Set page width horizontally 100% */
+    width: 99%;                    /* Set page width horizontally 100% */
     height: 100%;                   /* Set page height vertically 100% */
 }
 
@@ -80,6 +80,16 @@ h2 {
     font-weight: normal;
     text-decoration: none;
     color: #000000;
+}
+
+/* heading for myProfile */
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    color: #3e7e98;
 }
 
 /* Style the text in create account */
@@ -150,17 +160,23 @@ h2 {
 }
 
 /* Used in CreateAccount, EditAccount, SignIn, and Profile */
-.accountColumn1, .signInColumn1, .profileColumn1 {
+.accountColumn1, .signInColumn1 {
     text-align: right;
     background-color: #3e7e98;   /* Darker blueish teal */
     white-space: nowrap;  /* Disallow line break */
 }
+.profileColumn1 {
+    text-align: right;
+}
 
 /* Used in CreateAccount and EditAccount */
-.accountColumn2, .signInColumn2, .profileColumn2 {
+.accountColumn2, .signInColumn2 {
     text-align: left;
     background-color: #519ab8;   /* Lighter blueish teal */
     white-space: nowrap;  /* Disallow line break */
+}
+.profileColumn2 {
+    text-align: left;
 }
 /*
 ==================
@@ -243,8 +259,6 @@ Style the div component whose unique id is "editableContent" per reference
 #editableContent {
     width: 100%;
     height: calc(100% - 184px); 
-    margin-left: 10px;
-    margin-right: 10px;
     margin-top: 100px;
     margin-bottom: 16px;
 }
@@ -272,6 +286,11 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
 */
 #rightAlignPanelGroup {
     float: right;
+}
+
+/** profile info grid styling */
+#InfoGrid {
+    padding: 10px;
 }
 /* 
 Place the pizza hut logo image on the left top corner per reference

@@ -5,7 +5,7 @@
         <param-value>Development</param-value>
     </context-param>
     
-     <!-- This enables you to insert comments within a panel grid -->
+    <!-- This enables you to insert comments within a panel grid -->
     <context-param>
         <param-name>facelets.SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
@@ -25,6 +25,11 @@
             30
         </session-timeout>
     </session-config>
+    
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>auto</param-value>
+    </context-param>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>

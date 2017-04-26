@@ -57,6 +57,7 @@
                             <p:menuitem value="Vehicles" outcome="Browse/VehiclesBrowse" ajax="false"/>
                             <p:separator />
                             <p:menuitem value="All Categories" outcome="Browse/AllBrowse" ajax="false"/>
+                            
                         </p:menuButton>
                         <p:spacer width="7" height="10"/>
                         <p:button outcome="MyProfile" value="My Account" icon="ui-icon-person"/>
@@ -66,6 +67,8 @@
                         <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </c:if>
                     <c:if test="#{accountManager.isLoggedIn() == false}">
+                        <p:button styleClass="tempProfile" outcome="TempBrowse" value="Temp Profile" icon="ui-icon-home"/>
+                        <p:spacer width="7" height="10"/>
                         <p:button outcome="index" value="Home" icon="ui-icon-home"/>
                         <p:spacer width="7" height="10"/>
                         <p:menuButton value="Browse">

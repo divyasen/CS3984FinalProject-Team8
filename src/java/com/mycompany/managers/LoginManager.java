@@ -127,7 +127,7 @@ public class LoginManager implements Serializable {
             initializeSessionMap(user);
 
             // Redirect to show the Profile page
-            return "MyProfile.xhtml?faces-redirect=true";
+            return "TempBrowser.xhtml?faces-redirect=true";
         }
     }
 
