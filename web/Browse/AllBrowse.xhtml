@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Created by Zoe Smith on 2017.04.24 
+Copyright © 2017 Zoe Smith. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="template/siteTemplate.xhtml">
+
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="#{bundle.BrowseListingTitle}"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <div align="center" style="width:97%">
+                <!--
+                PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere on your JSF page. 
+                The location of growl in a JSF page does not matter since the messages are displayed
+                as an overlay. The life attribute defines how long the message will be displayed in 
+                milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
+                -->
+                <p:growl id="growl" life="4000" />
+
+                <h:form id="BrowseingBrowseForm">
+                    <p:panel header="#{bundle.BrowseListingTitle}">
+
+                        <!-- Read about p:dataTable in the PrimeFaces User Guide and learn about it:
+                        http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf
+                        
+                        The table is displayed as sorted in the order of database Primary Key (id) values.
+                        -->
+                        <p:dataTable id="datalist" value="#{listingController.items}" var="item"
+                                     selectionMode="single" selection="#{listingController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     class="dataTable"
+                                     >
+                            <p:ajax event="rowSelect"   update="createButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton deleteButton"/>
+
+
+                            <!-- The "header" and "footer" facets are defined for the p:dataTable. See PrimeFaces
+                            User Guide at http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf
+                            -->
+
+                            <!-- Show the image of each listing -->
+                            <!--<p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Item Name"/>
+                                </f:facet>
+                                <div>&nbsp;
+                                    <img src="#{item.itemName}" width="40"/>&nbsp;
+                                </div>
+                            </p:column>-->
+
+                            <!-- Clicking the column header redisplays the table as sorted w.r.t. ITEM NAME  
+                            in alphabetical order A to Z. Clicking it again reverses the order to Z to A. -->
+                            <p:column sortBy="#{item.itemName}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.BrowseListingTitle_itemName}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.itemName}"/>
+                            </p:column>
+                            <!-- Clicking the column header redisplays the table as sorted w.r.t. DESCRIPTION  
+                            in alphabetical order A to Z. Clicking it again reverses the order to Z to A. -->
+                            <p:column sortBy="#{item.description}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.BrowseListingTitle_description}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            </p:column>
+                            <!-- Clicking the column header redisplays the table as sorted w.r.t. POSTING DATE  
+                            in ascending order. Clicking it again reverses the order to descending. -->
+                            <p:column sortBy="#{item.postingDate}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.BrowseListingTitle_postingDate}" class="facetHeader"/>
+                                </f:facet>
+                                <h:outputText class="dataFields" value="#{item.postingDate}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <!-- Clicking the column header redisplays the table as sorted w.r.t. POSTING DATE  
+                            in ascending order. Clicking it again reverses the order to descending. -->
+                            <p:column sortBy="#{item.price}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.BrowseListingTitle_price}" class="facetHeader"/>
+                                </f:facet>
+                                <h:outputText class="dataFields" value="#{item.price}">
+                                        <f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency" />                                </h:outputText>
+                            </p:column>
+                            <!-- Clicking the column header redisplays the table as sorted w.r.t. CATEGORY  
+                            in alphabetical order A to Z. Clicking it again reverses the order to Z to A. -->
+                            <p:column sortBy="#{item.category}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.BrowseListingTitle_category}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.category}"/>
+                            </p:column>
+
+
+                            <!--
+                            The "header" and "footer" facets are defined for the p:dataTable. See PrimeFaces
+                            documentation at http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf
+                            -->
+
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" 
+                                                 styleClass="commandButton" actionListener="#{listingController.prepareCreate}" 
+                                                 update=":ListingCreateForm" oncomplete="PF('ListingCreateDialog').show()"/>
+
+
+                                <!-- **********************************************
+                                Display a Confirmation dialog for the DELETE button
+                                *********************************************** -->
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" 
+                                                 styleClass="commandButton" actionListener="#{listingController.destroy}" 
+                                                 update=":growl,datalist" disabled="#{empty listingController.selected}">
+
+                                    <p:confirm header="Confirmation" 
+                                               message="Are you sure you want to permanently delete the selected Listing from the database?" 
+                                               icon="ui-icon-alert" />
+                                </p:commandButton>
+
+                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade">
+                                    <div align="center">
+                                        <!-- The value of the first button listed below will be shown as 
+                                        highlighted (default action) when displayed -->
+                                        <p:commandButton value="No" type="button" 
+                                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        &nbsp;
+                                        <p:commandButton value="Yes" type="button" 
+                                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    </div>
+                                </p:confirmDialog>
+                                <!-- **********************************************
+                                End of Display of the DELETE Confirmation dialog 
+                                *********************************************** --> 
+
+                            </f:facet>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+            </div>
+
+            <!-- Clicking the Create button displays the included Create.xhtml file in a dialog box on top of this page. -->
+            <ui:include src="Create.xhtml"/>
+        </ui:define>
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>

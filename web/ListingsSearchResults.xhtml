@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Zoe Smith on 2017.03.18 
+Copyright © 2017 Zoe Smith. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Listings Search Results"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <div align="center" style="width:97%" bgcolor="#FDF5E6" >
+                <!--
+                PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere on your JSF page. 
+                The location of growl in a JSF page does not matter since the messages are displayed
+                as an overlay. The life attribute defines how long the message will be displayed in 
+                milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
+                -->
+                <p:growl id="growl" life="4000" />
+                <h:form id="SearchedListingsForm">
+                    <!--
+                    Read about p:dataGrid in the PrimeFaces User Guide and learn about it:
+                    http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf
+                        
+                    The variable named "aSearchedListing" is the iterator variable containing the object reference of 
+                    a current listing object in the list of searchedlistings returned by "searchedListingController.searchedListings".
+                    Each dataGrid p:panel is created to display aSearchedListing object in the given searchedListings list.
+                    The "rows" attribute value = number of rows x number of columns.
+                    -->
+                    <p:dataGrid id="searchedListings" value="#{searchedListingController.searchedListings}" var="aSearchedListing"
+                                columns="2" layout="grid"
+                                rows="6" paginator="true"  
+                                rowsPerPageTemplate="6,12,18,24,30,36,42,48,54" 
+                                >
+
+                        <f:facet name="header">
+                            Listings Search Results
+                        </f:facet>
+
+                        <!-- The p:panel defines a data grid cell displaying aSearchedListing data -->
+                        <p:panel  style="text-align:left" > 
+<!--
+                            <h:panelGrid columns="3" style="width:100%" 
+                                         columnClasses="columnRecipeImage, columnMiddlePart, columnInfoButton">                                    
+                                <p:graphicImage url="#{aSearchedRecipe.imageUrl}" width="100px" style="float:left" /> 
+
+                                <h:panelGrid style="width:100%; margin-left:10px">
+                                        <h:outputText value="#{aSearchedRecipe.title}"/>
+                                    <h:panelGrid columns="1" style="float:left">
+                                        <h:panelGrid columns="1" >
+                                            <h:outputText value="by" />
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="1">
+                                            <h:outputText class="sourceName" value="#{aSearchedRecipe.sourceName}" />
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+
+                                </h:panelGrid>-->
+
+                                <!-- 
+                                *** INFO button ***
+                                The "title" attribute value is shown as a tooltip text when the mouse is moved over the info icon.
+                                --><!--
+                                <p:commandLink update=":searchedRecipeDetailsForm" style="width:20px;float:right;" 
+                                               oncomplete="PF('searchedRecipeDetailsDialog').show()" 
+                                               title="View Searched Recip Details">
+-->
+                                    <!-- Display the Info Icon --><!--
+                                    <i class="fa fa-info-circle fa-2x"></i>-->
+                                    <!-- 
+                                    When the Info Icon is clicked on (selected), the searchedRecipeController.selected method
+                                    is invoked to set the selected current recipe object to the aSearchedRecipe object. 
+                                    -->
+                                    <f:setPropertyActionListener target="#{searchedListingController.selected}" value="#{aSearchedListing}" />
+                                </p:commandLink>     
+
+                            </h:panelGrid>
+
+                        </p:panel>
+                    </p:dataGrid>     
+                </h:form>
+            </div>
+            <ui:include src="SearchedRecipeDetails.xhtml"/>
+
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>

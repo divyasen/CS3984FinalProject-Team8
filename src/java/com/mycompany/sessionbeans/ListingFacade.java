@@ -50,4 +50,11 @@ public class ListingFacade extends AbstractFacade<Listing> {
         return userFiles;
     }
     
+    public List<Listing> browseCategoryQuery(String browseCategory) {
+        // Place the % wildcard before and after the search string to search for it anywhere in the publicVideo name 
+        browseCategory = "%" + browseCategory + "%";
+        // Conduct the search in a case-insensitive manner and return the results in a list.
+        return getEntityManager().createQuery("SELECT c FROM Listing c WHERE c.category LIKE :browseCategory").setParameter("browseCategory", browseCategory).getResultList();
+    }
+    
 }

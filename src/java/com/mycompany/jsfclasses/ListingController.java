@@ -35,6 +35,18 @@ public class ListingController implements Serializable {
     @EJB
     private com.mycompany.sessionbeans.ListingFacade ejbFacade;
 
+    private List<Listing> browseAppliances = null;
+    private List<Listing> browseArtsAndCrafts = null;
+    private List<Listing> browseBooks = null;
+    private List<Listing> browseClothing = null;
+    private List<Listing> browseCollectibles = null;
+    private List<Listing> browseElectronics = null;
+    private List<Listing> browseMiscellaneous = null;
+    private List<Listing> browseSportsAndOutdoors = null;
+    private List<Listing> browseToysAndGames = null;
+    private List<Listing> browseVehicles = null;
+    
+
     public ListingController() {
     }
 
@@ -54,6 +66,37 @@ public class ListingController implements Serializable {
         this.selected = selected;
     }
 
+    public List<Listing> getBrowseAppliances() {
+        return getListingFacade().browseCategoryQuery("Appliances");
+    }
+    public List<Listing> getBrowseArtsAndCrafts() {
+        return getListingFacade().browseCategoryQuery("ArtsAndCrafts");
+    }
+    public List<Listing> getBrowseBooks() {
+        return getListingFacade().browseCategoryQuery("Books");
+    }
+    public List<Listing> getBrowseClothing() {
+        return getListingFacade().browseCategoryQuery("Clothing");
+    }
+    public List<Listing> getBrowseCollectibles() {
+        return getListingFacade().browseCategoryQuery("Collectibles");
+    }
+    public List<Listing> getBrowseElectronics() {
+        return getListingFacade().browseCategoryQuery("Electronics");
+    }
+    public List<Listing> getBrowseMiscellaneous() {
+        return getListingFacade().browseCategoryQuery("Miscellaneous");
+    }
+    public List<Listing> getBrowseSportsAndOutdoors() {
+        return getListingFacade().browseCategoryQuery("SportsAndOutdoors");
+    }
+    public List<Listing> getBrowseToysAndGames() {
+        return getListingFacade().browseCategoryQuery("ToysAndGames");
+    }
+    public List<Listing> getBrowseVehicles() {
+        return getListingFacade().browseCategoryQuery("Vehicles");
+    }
+    
     protected void setEmbeddableKeys() {
     }
 
