@@ -101,7 +101,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         
                         <!-- PHONE NUMBER -->
                         <p:outputLabel value="#{bundle.EditUserLabel_phoneNumber}" for="phone" />
-                        <p:inputMask id="phoneNumber" value="#{accountManager.phoneNumber}" mask="(999) 999-9999" required="true"
+                        <p:inputMask id="phone" value="#{accountManager.phoneNumber}" mask="(999) 999-9999" required="true"
                                      styleClass="accountInputTextField" requiredMessage="#{bundle.EditUserRequiredMessage_phoneNumber}" label="Phone"/>
 
                         <h:outputText value="#{bundle.ViewUserLabel_username}" />
@@ -130,7 +130,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                     <p:commandButton id="submit" value="Save" action="#{accountManager.updateAccount()}" 
                                      styleClass="commandButton" ajax="false" icon="ui-icon-disk" />
                     &nbsp;
-                    <p:button outcome="Profile" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />
+                    <p:button outcome="MyProfile" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />
                     
                     <br /><br />
                 </h:form>

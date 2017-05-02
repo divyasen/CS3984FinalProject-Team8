@@ -451,6 +451,7 @@ public class AccountManager implements Serializable {
                 editUser.setState(this.selected.getState());
                 editUser.setZipcode(this.selected.getZipcode());
                 editUser.setEmail(this.selected.getEmail());
+                editUser.setPhoneNumber(this.selected.getPhoneNumber());
 
                 // It is optional for the user to change his/her password
                 String new_Password = getNewPassword();
@@ -472,7 +473,7 @@ public class AccountManager implements Serializable {
                 return "";
             }
             // Account update is completed, redirect to show the Profile page.
-            return "Profile.xhtml?faces-redirect=true";
+            return "MyProfile.xhtml?faces-redirect=true";
         }
         return "";
     }
