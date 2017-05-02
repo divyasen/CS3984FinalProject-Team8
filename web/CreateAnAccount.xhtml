@@ -121,7 +121,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         
                         <!-- PHONE NUMBER -->
                         <p:outputLabel value="#{bundle.CreateUserLabel_phoneNumber}" for="phoneNumber" styleClass="createAccountText"/>
-                        <p:inputMask id="phoneNumber" value="#{accountManager.phoneNumber}" mask="(999) 999-9999" required="true"
+                        <p:inputMask id="phoneNumber" value="#{accountManager.selected.phoneNumber}" mask="(999) 999-9999" required="true"
                                      styleClass="accountInputTextField" requiredMessage="#{bundle.CreateUserRequiredMessage_phoneNumber}" label="Phone"/> 
                        
 

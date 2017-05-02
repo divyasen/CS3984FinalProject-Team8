@@ -22,8 +22,7 @@ public final class Constants {
         Therefore, we use the following two external directories 
         for the storage and retrieval of user's files.
      */
-    public static final String FILES_ABSOLUTE_PATH = "/home/cloudsd/Sengar/CloudStorage/FileStorage/";
-    public static final String PHOTOS_ABSOLUTE_PATH = "/home/cloudsd/Sengar/CloudStorage/UserPhotoStorage/";
+    public static final String PHOTOS_ABSOLUTE_PATH = "C:\\Users\\Travis\\UserPhotoStorage\\";
 
     /*
     In glassfish-web.xml file, we designated the '/CloudStorage/' directory as the
@@ -33,9 +32,8 @@ public final class Constants {
     
     Relative path is defined with respect to the Alternate Document Root starting with 'CloudStorage'.
      */
-    public static final String FILES_RELATIVE_PATH = "CloudStorage/FileStorage/";
-    public static final String PHOTOS_RELATIVE_PATH = "CloudStorage/UserPhotoStorage/";
-    public static final String DEFAULT_PHOTO_RELATIVE_PATH = "CloudStorage/UserPhotoStorage/defaultUserPhoto.png";
+    public static final String PHOTOS_RELATIVE_PATH = "UserPhotoStorage/";
+    public static final String DEFAULT_PHOTO_RELATIVE_PATH = "UserPhotoStorage/defaultUserPhoto.png";
 
     /* Temporary filename */
     public static final String TEMP_FILE = "tmp_file";

@@ -141,7 +141,7 @@ public class PhotoFileManager implements Serializable {
     public String upload() {
 
         // Check if a file is selected
-        if (file.getSize() == 0) {
+        if (file.getSize() == 0 || file == null) {
             message = "You need to choose a file first!";
             return "";
         }
@@ -196,7 +196,7 @@ public class PhotoFileManager implements Serializable {
         message = "";
 
         // Redirect to show the Profile page
-        return "Profile?faces-redirect=true";
+        return "MyProfile?faces-redirect=true";
     }
 
     /*
@@ -206,7 +206,7 @@ public class PhotoFileManager implements Serializable {
      */
     public String cancel() {
         message = "";
-        return "Profile?faces-redirect=true";
+        return "MyProfile?faces-redirect=true";
     }
 
     /*

@@ -34,63 +34,138 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
             <h:form id="UserProfileForm">
                 <p:tabView dynamic="true">
                     <p:tab title="My Profile">
+
                         <table width="100%" border="0" cellspacing="0" cellpadding="10">
                             <tr>
-                                <td>
-                                    <div style="text-align: left">
-                                        <h3> USERNAME </h3>
+                                <td colspan="2" rowspan="6">
+                                    <div style="text-align: center">
+                                        <h:graphicImage value="#{accountManager.userPhoto()}" styleClass="profilePhoto" />
                                     </div>
                                 </td>
-                                <td rowspan="2">
+                                <td colspan="2" rowspan="7">
                                     <div align="center">
-                                        <p:panelGrid columns="2" columnClasses="profileColumn1, profileColumn2" id="InfoGrid">
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_firstName}"/>
-                                            <h:outputText value="Temp User First Name" style=""/>
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_middleName}"/>
-                                            <h:outputText value="Temp User Middle Name" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_lastName}"/>
-                                            <h:outputText value="Temp User Last Name" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_address1}"/>
-                                            <h:outputText value="Temp User Address1" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_address2}"/>
-                                            <h:outputText value="Temp User Address 2" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_city}"/>
-                                            <h:outputText value="Temp User City" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_state}"/>
-                                            <h:outputText value="Temp User State" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_zipcode}"/>
-                                            <h:outputText value="Temp User ZipCode" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_email}"/>
-                                            <h:outputText value="Temp User Email" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_phoneNumber}"/>
-                                            <h:outputText value="Temp User Phone Number" />
-
-                                            <h:outputText value="#{bundle.ViewUserLabel_username}"/>
-                                            <h:outputText value="Temp User UserName" />
-
-                                        </p:panelGrid>
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>First Name: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><div style="text-align: left"><pText>#{accountManager.selected.firstName}</pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Middle Name: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.middleName}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Last Name: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.lastName}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Address 1: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.address1}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Address 2: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.address2}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>City: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.city}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>State: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.state}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Zip Code: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.zipcode}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Email: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.email}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Phone Number: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.phoneNumber}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right"><pText>Username: </pText></div></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><pText>#{accountManager.selected.username}</pText></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div align="left">
-                                        <h:graphicImage styleClass="content" value="/resources/images/dog.jpg" width="300" height="300" />
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div align="center">
+                                        <pText>#{accountManager.selected.username}</pText>
                                     </div>
                                 </td>
                             </tr>
                         </table>
-
                     </p:tab>
                     <p:tab title="My Listings">
                         <div style="text-align: center">
@@ -108,6 +183,138 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         <h:form id="UserProfileForm">
                             <p:tabView dynamic="true" orientation="left">
                                 <p:tab title="Edit Account">
+                                    <div align="center" style="width:50%; margin:0 auto;">
+
+                                        <!-- Error messages will be shown here if any -->
+                                        <p:messages id="msgs" showIcon="false"/>
+                                        <h:outputLabel id="form-error-message" class="errorMessages" value="#{accountManager.statusMessage}"/>
+
+                                        <h:form id="EditAccountProfileForm">
+
+                                            <h2>Edit Account Profile</h2>
+
+                                            <f:event listener="#{accountManager.validatePasswordChange}" type="postValidate"/>
+
+                                            <p:panelGrid columns="2" columnClasses="accountColumn1, accountColumn2">
+
+                                                <!-- FIRST NAME -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_firstName}" for="firstName" styleClass="createAccountText"/>
+                                                <p:inputText id="firstName" value="#{accountManager.selected.firstName}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_firstName}" label="First Name">
+                                                    <f:validateLength minimum="2" />
+                                                </p:inputText>   
+
+                                                <!-- MIDDLE NAME -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_middleName}" for="middleName" styleClass="createAccountText"/>
+                                                <p:inputText id="middleName" value="#{accountManager.selected.middleName}"
+                                                             required="false" styleClass="accountInputTextField" label="Middle Name">
+                                                </p:inputText>
+
+                                                <!-- LAST NAME -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_lastName}" for="lastName" styleClass="createAccountText"/>
+                                                <p:inputText id="lastName" value="#{accountManager.selected.lastName}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_lastName}" label="Last Name">
+                                                    <f:validateLength minimum="2" />
+                                                </p:inputText>
+
+                                                <!-- ADDRESS LINE 1 -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_address1}" for="address1" styleClass="createAccountText"/>
+                                                <p:inputText id="address1" value="#{accountManager.selected.address1}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_address1}" label="Address Line 1">
+                                                    <f:validateLength minimum="2" />
+                                                </p:inputText>
+
+                                                <!-- ADDRESS LINE 2 -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_address2}" for="address2" styleClass="createAccountText"/>
+                                                <p:inputText id="address2" value="#{accountManager.selected.address2}" styleClass="accountInputTextField" label="Address Line 2">
+                                                </p:inputText>
+
+                                                <!-- CITY -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_city}" for="city" styleClass="createAccountText"/>
+                                                <p:inputText id="city" value="#{accountManager.selected.city}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_city}" label="City">
+                                                    <f:validateLength minimum="2" />
+                                                </p:inputText>
+
+                                                <!-- STATE ABBREVIATION -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_state}" for="state" styleClass="createAccountText"/>
+                                                <h:selectOneMenu id="state" value="#{accountManager.selected.state}" required="true" >
+                                                    <f:selectItems value="#{accountManager.listOfStates}" var="state"
+                                                                   itemLabel="#{state}" itemValue="#{state}" />
+                                                </h:selectOneMenu>
+
+                                                <!-- ZIP CODE -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_zipcode}" for="zipcode" styleClass="createAccountText"/>
+                                                <p:inputText id="zipcode" value="#{accountManager.selected.zipcode}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_zipcode}" label="Zip Code" >
+                                                    <f:validateLength minimum="5" />
+                                                    <f:validator validatorId="zipCodeValidator"/> 
+                                                </p:inputText>
+
+                                                <!-- EMAIL ADDRESS -->
+                                                <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" styleClass="createAccountText"/>
+                                                <p:inputText id="email" value="#{accountManager.selected.email}" required="true" styleClass="accountInputTextField"
+                                                             requiredMessage="#{bundle.EditUserRequiredMessage_email}" label="Email">
+                                                    <f:validateLength minimum="2" />
+                                                    <f:validator validatorId="emailValidator" />  
+                                                </p:inputText>
+
+                                                <!-- PHONE NUMBER -->
+                                                <p:outputLabel value="#{bundle.CreateUserLabel_phoneNumber}" for="phoneNumber" styleClass="createAccountText"/>
+                                                <p:inputMask id="phoneNumber" value="#{accountManager.selected.phoneNumber}" mask="(999) 999-9999" required="true"
+                                                             styleClass="accountInputTextField" requiredMessage="#{bundle.EditUserRequiredMessage_phoneNumber}" label="Phone"/>
+
+                                                <p:outputLabel value="#{bundle.ViewUserLabel_username}" styleClass="createAccountText" indicateRequired="false"/>
+                                                <p:outputLabel value="#{accountManager.selected.username}" styleClass="createAccountText" indicateRequired="false"/>
+
+                                                <h:outputLabel value="" />
+                                                <p:outputLabel value="Fill in Only to Change Password" styleClass="createAccountText" indicateRequired="false"/>
+
+                                                <!-- PASSWORD CHANGE -->
+                                                <p:outputLabel value="New Password:" for="newPassword" styleClass="createAccountText" indicateRequired="false"/>
+
+                                                <!-- ADDRESS LINE 1 -->
+                                                <p:password id="newPassword" value="#{accountManager.newPassword}" feedback="true" styleClass="accountInputTextField">
+                                                    <!-- Execute the "validate" method in the "PasswordValidator.java" class file to validate the password entered. -->
+                                                    <f:validator validatorId="passwordValidator" /> 
+                                                </p:password>
+
+                                                <!-- p:password changes the characters typed to bullets to hide the password as it is typed -->
+
+                                                <p:outputLabel value="Confirm New Password:" for="newConfirmPassword" styleClass="createAccountText" indicateRequired="false"/>
+                                                <p:password id="newConfirmPassword" value="toBeReadFromThisFieldByAccountManager" styleClass="accountInputTextField" />
+
+                                            </p:panelGrid>
+
+                                            <br />
+                                            <p:commandButton id="submit" value="Save" action="#{accountManager.updateAccount()}" 
+                                                             styleClass="commandButton" ajax="false" icon="ui-icon-disk" />
+                                            <p:spacer width="10"/>
+                                            <p:button outcome="MyProfile" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />
+                                            <p:spacer width="10"/>
+                                            <p:commandButton value="Delete Account" icon="ui-icon-trash" oncomplete="PF('ConfirmPasswordDialog').show()" 
+                                                             update=":ConfirmPasswordForm">
+
+                                                <p:confirm header="Account Deletion Confirmation" 
+                                                           message="Are you sure to permanently delete your account? This cannot be undone!" 
+                                                           icon="ui-icon-alert" />
+                                            </p:commandButton>
+
+                                            <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade">
+                                                <div align="center">
+
+                                                    <p:commandButton value="NO" type="button" 
+                                                                     styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                                    &nbsp;
+                                                    <p:commandButton value="YES" type="button" 
+                                                                     styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                </div>
+                                            </p:confirmDialog>
+                                        </h:form>
+
+                                    </div>
+                                </p:tab>
+                                <p:tab title="Change Photo">
                                     <h:form id="ChangePhoto" enctype="multipart/form-data">
 
                                         <h2>Please Choose Your Photo File and Upload It</h2>
@@ -116,41 +323,55 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                         <p:fileUpload id="file" value="#{photoFileManager.file}" mode="simple" />
                                         <br/>
                                         <br/>
-                                        <!-- fieldset is an HTML tag that draws a box around the content enclosed within it -->
-                                        <fieldset>
-                                            <!-- Upload action is performed with this command button -->
-                                            <p:commandButton id="upload" value="Upload" ajax="false" styleClass="commandButton"
-                                                             action="#{photoFileManager.upload()}" icon="ui-icon-arrowthick-1-n" />
-                                        </fieldset>
-
                                         <br/>
                                         <!-- Error messages are displayed here -->
                                         <h:outputText styleClass="errorMessages" value="#{photoFileManager.message}" />
 
-                                        <br/>
+                                        <p:commandButton id="upload" value="Upload" ajax="false" styleClass="commandButton"
+                                                         action="#{photoFileManager.upload()}" icon="ui-icon-arrowthick-1-n" />
+                                        <p:spacer width="10"/>
                                         <p:commandButton id="cancel" value="Cancel" ajax="false" styleClass="commandButton"
                                                          action="#{photoFileManager.cancel()}" icon="ui-icon-cancel" />
-                                        &nbsp;
+                                        <p:spacer width="10"/>
                                         <p:commandButton id="clear" value="Clear" ajax="false" styleClass="commandButton"
                                                          action="#{photoFileManager.clearErrorMessage()}" icon="ui-icon-refresh" />
                                     </h:form>
                                 </p:tab>
-                                <p:tab title="Change Photo">
-                                    <h2>Change Photo Tab</h2>
-                                </p:tab>
                                 <p:tab title="Change Password">
-                                    <h2>Change Password Tab</h2>
+                                    <div align="center" style="width:50%; margin:0 auto;">
+
+                                        <!-- Error messages will be shown here if any -->
+                                        <p:messages id="msgs2" showIcon="false"/>
+                                        <h:outputLabel id="form-error-message2" class="errorMessages" value="#{passwordResetManager.message}"/>
+                                        <br />
+
+                                        <h:form id="EnterUsernameForm">
+                                            <h2>Please Enter Your Username</h2>
+                                            <fieldset>
+                                                <div style="margin-bottom: 5px">
+                                                    <p:inputText id="username" value="#{passwordResetManager.username}" required="true"
+                                                                 requiredMessage="Please enter your username!" 
+                                                                 styleClass="usernameInputTextField" />
+                                                </div>
+                                                <br/>
+                                                <p:commandButton id="submit" value="Submit" update="msgs2" icon="ui-icon-extlink"
+                                                                 action="#{passwordResetManager.usernameSubmit()}" 
+                                                                 styleClass="commandButton" />
+
+                                                &nbsp;
+                                                <p:button outcome="index" value="Cancel" icon="ui-icon-cancel" 
+                                                          styleClass="commandButton" />
+                                            </fieldset>  
+                                            <br/>               
+                                        </h:form>
+                                    </div>
                                 </p:tab>
                             </p:tabView>
-                            <p:commandButton value="Delete Account" icon="fa fa-trash"/>
-                            <p:spacer width="10" height="10" />
-                            <p:commandButton value="Sign Out" action="#{accountManager.logout()}" icon="fa fa-sign-out"/>
-                            <p:spacer width="10" height="10" />
                         </h:form>
                     </p:tab>
                 </p:tabView>
             </h:form>
-
+            <ui:include src="DeleteAccountDialog.xhtml"/>
         </ui:define>
 
     </ui:composition>
