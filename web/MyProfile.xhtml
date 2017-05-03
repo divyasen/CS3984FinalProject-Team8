@@ -34,7 +34,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
             <h:form id="UserProfileForm">
                 <p:tabView dynamic="true">
                     <p:tab title="My Profile">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                        <table width="100%" border="0" cellspacing="" cellpadding="10">
                             <tr>
                                 <td colspan="2" rowspan="6">
                                     <div style="text-align: center">
@@ -47,101 +47,64 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                     <div align="center">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="2">
                                             <tr>
-                                                <td><div style="text-align: right"><pText>First Name: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>First Name: </pText></div></td>
                                                 <td><div style="text-align: left"><pText>#{accountManager.selected.firstName}</pText></div></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Middle Name: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Middle Name: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.middleName}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Last Name: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Last Name: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.lastName}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Address 1: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Address 1: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.address1}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Address 2: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Address 2: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.address2}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>City: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>City: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.city}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>State: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>State: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.state}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Zip Code: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Zip Code: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.zipcode}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Email: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Email: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.email}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Phone Number: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Phone Number: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.phoneNumber}</pText></td>
 
                                             </tr>
                                             <tr>
-                                                <td><div style="text-align: right"><pText>Username: </pText></div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td style="padding-left: 150pt"  width="200"><div style="text-align: left"><pText>Username: </pText></div></td>
                                                 <td><pText>#{accountManager.selected.username}</pText></td>
 
                                             </tr>
-                                            <tr>
-                                                <td><div style="text-align: right">
-                                                        <p:button outcome="EditAccount" value="Edit Account" icon="ui-icon-scissors"/>
-                                                    </div></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
+                                            <tr> 
+                                                <td style="padding-left: 175pt"  width="200" colspan="2">
+                                                    <p:button outcome="EditAccount" value="Edit Account" icon="ui-icon-scissors"/>
+                                                    <p:spacer width="25"/>
                                                     <p:commandButton value="Delete Account" icon="ui-icon-trash" oncomplete="PF('ConfirmPasswordDialog').show()" 
                                                                      update=":ConfirmPasswordForm">
 
@@ -188,7 +151,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                     <p:tab title="My Listings">
                         <div style="text-align: center">
                             <h:form> 
-                                <p:dataScroller value="#{listingController.items}" var="myListing" chunkSize="10">
+                                <p:dataScroller value="#{listingController.myListings}" var="myListing" chunkSize="10">
                                     <f:facet name="header">
                                         My Listings
                                     </f:facet>
@@ -200,9 +163,11 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                             <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
                                                 <h:outputText value="Item Name:" />
                                                 <h:outputText value="#{myListing.itemName}" style="font-weight: bold"/>
-                                                
+
                                                 <h:outputText value="Price:" />
-                                                <h:outputText value="#{myListing.price}" style="font-weight: bold"/>
+                                                <h:outputText value="#{myListing.price}" style="font-weight: bold">
+                                                              <f:convertNumber pattern="¤#,##0" currencySymbol="$" type="currency"/>
+                                                </h:outputText>
 
                                                 <h:outputText value="Category:" />
                                                 <h:outputText value="#{myListing.category}" style="font-weight: bold"/>
@@ -214,6 +179,8 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                     </h:panelGrid>
                                     <p:separator></p:separator>
                                 </p:dataScroller>
+                                <br/>
+                                <p:button outcome="CreateListing" value="Create a Listing" icon="ui-icon-pencil"/>
                             </h:form>
                         </div>
                     </p:tab>

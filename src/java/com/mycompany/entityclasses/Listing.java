@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Listing.findAll", query = "SELECT l FROM Listing l")
     , @NamedQuery(name = "Listing.findById", query = "SELECT l FROM Listing l WHERE l.id = :id")
     , @NamedQuery(name = "Listing.findByItemName", query = "SELECT l FROM Listing l WHERE l.itemName = :itemName")
-    , @NamedQuery(name = "UserFile.findListingsByUserId", query = "SELECT u FROM Listing u WHERE u.userId.id = :userId")
+    , @NamedQuery(name = "Listing.findListingsByUserId", query = "SELECT u FROM Listing u WHERE u.userId.id = :userId")
     , @NamedQuery(name = "Listing.findByPostingDate", query = "SELECT l FROM Listing l WHERE l.postingDate = :postingDate")
     , @NamedQuery(name = "Listing.findByPrice", query = "SELECT l FROM Listing l WHERE l.price = :price")
     , @NamedQuery(name = "Listing.findByCategory", query = "SELECT l FROM Listing l WHERE l.category = :category")

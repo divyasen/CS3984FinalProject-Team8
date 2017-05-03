@@ -38,53 +38,53 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                     <p:panelGrid columns="2" columnClasses="accountColumn1, accountColumn2">
 
                         <!-- FIRST NAME -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_firstName}" for="firstName" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_firstName}" for="firstName" styleClass="createAccountText"/>
                         <p:inputText id="firstName" value="#{accountManager.selected.firstName}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_firstName}" label="First Name">
                             <f:validateLength minimum="2" />
                         </p:inputText>   
 
                         <!-- MIDDLE NAME -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_middleName}" for="middleName" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_middleName}" for="middleName" styleClass="createAccountText"/>
                         <p:inputText id="middleName" value="#{accountManager.selected.middleName}"
                                      required="false" styleClass="accountInputTextField" label="Middle Name">
                         </p:inputText>
 
                         <!-- LAST NAME -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_lastName}" for="lastName" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_lastName}" for="lastName" styleClass="createAccountText"/>
                         <p:inputText id="lastName" value="#{accountManager.selected.lastName}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_lastName}" label="Last Name">
                             <f:validateLength minimum="2" />
                         </p:inputText>
 
                         <!-- ADDRESS LINE 1 -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_address1}" for="address1" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_address1}" for="address1" styleClass="createAccountText"/>
                         <p:inputText id="address1" value="#{accountManager.selected.address1}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_address1}" label="Address Line 1">
                             <f:validateLength minimum="2" />
                         </p:inputText>
 
                         <!-- ADDRESS LINE 2 -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_address2}" for="address2" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_address2}" for="address2" styleClass="createAccountText"/>
                         <p:inputText id="address2" value="#{accountManager.selected.address2}" styleClass="accountInputTextField" label="Address Line 2">
                         </p:inputText>
 
                         <!-- CITY -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_city}" for="city" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_city}" for="city" styleClass="createAccountText"/>
                         <p:inputText id="city" value="#{accountManager.selected.city}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_city}" label="City">
                             <f:validateLength minimum="2" />
                         </p:inputText>
 
                         <!-- STATE ABBREVIATION -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_state}" for="state" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_state}" for="state" styleClass="createAccountText"/>
                         <h:selectOneMenu id="state" value="#{accountManager.selected.state}" required="true" >
                             <f:selectItems value="#{accountManager.listOfStates}" var="state"
                                            itemLabel="#{state}" itemValue="#{state}" />
                         </h:selectOneMenu>
 
                         <!-- ZIP CODE -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_zipcode}" for="zipcode" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_zipcode}" for="zipcode" styleClass="createAccountText"/>
                         <p:inputText id="zipcode" value="#{accountManager.selected.zipcode}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_zipcode}" label="Zip Code" >
                             <f:validateLength minimum="5" />
@@ -92,7 +92,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         </p:inputText>
                         
                         <!-- EMAIL ADDRESS -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" styleClass="createAccountText"/>
                         <p:inputText id="email" value="#{accountManager.selected.email}" required="true" styleClass="accountInputTextField"
                                      requiredMessage="#{bundle.EditUserRequiredMessage_email}" label="Email">
                             <f:validateLength minimum="2" />
@@ -100,18 +100,18 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         </p:inputText>
                         
                         <!-- PHONE NUMBER -->
-                        <p:outputLabel value="#{bundle.EditUserLabel_phoneNumber}" for="phone" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_phoneNumber}" for="phone" styleClass="createAccountText"/>
                         <p:inputMask id="phone" value="#{accountManager.phoneNumber}" mask="(999) 999-9999" required="true"
                                      styleClass="accountInputTextField" requiredMessage="#{bundle.EditUserRequiredMessage_phoneNumber}" label="Phone"/>
 
-                        <h:outputText value="#{bundle.ViewUserLabel_username}" />
-                        <h:outputText value="#{accountManager.selected.username}" />
+                        <p:outputLabel value="#{bundle.ViewUserLabel_username}" styleClass="createAccountText"/>
+                        <p:outputLabel value="#{accountManager.selected.username}" styleClass="createAccountText"/>
 
                         <h:outputLabel value="" />
-                        <h:outputLabel value="Fill in Only to Change Password" styleClass="alertUser"/>
+                        <p:outputLabel value="Fill in Only to Change Password" styleClass="createAccountText"/>
 
                         <!-- PASSWORD CHANGE -->
-                        <h:outputLabel value="New Password:" for="newPassword" />
+                        <p:outputLabel value="New Password:" for="newPassword" styleClass="createAccountText" indicateRequired="false"/>
                         
                         <!-- ADDRESS LINE 1 -->
                         <p:password id="newPassword" value="#{accountManager.newPassword}" feedback="true" styleClass="accountInputTextField" >
@@ -121,7 +121,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         
                         <!-- p:password changes the characters typed to bullets to hide the password as it is typed -->
 
-                        <h:outputLabel value="Confirm New Password:" for="newConfirmPassword" />
+                        <p:outputLabel value="Confirm New Password:" for="newConfirmPassword" styleClass="createAccountText" indicateRequired="false"/>
                         <p:password id="newConfirmPassword" value="toBeReadFromThisFieldByAccountManager" styleClass="accountInputTextField" />
 
                     </p:panelGrid>

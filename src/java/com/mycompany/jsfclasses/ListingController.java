@@ -123,7 +123,7 @@ public class ListingController implements Serializable {
         // Obtain the object reference of the logged-in User object
         User user = getUserFacade().findByUsername(user_name);
         
-        return getListingFacade().findListingsByUserID(user.getId());
+        return getFacade().findListingsByUserID(user.getId());
     }
 
     protected void setEmbeddableKeys() {
