@@ -8,6 +8,7 @@ import com.mycompany.entityclasses.Listing;
 
 import com.mycompany.sessionbeans.ListingFacade;
 import com.mycompany.sessionbeans.ListingPhotoFacade;
+import com.mycompany.sessionbeans.UserFacade;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -24,7 +25,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 @Named(value = "listingManager")
 
@@ -47,6 +51,14 @@ public class ListingManager implements Serializable {
 
     private Listing selected;
 
+   private String statusMessage;
+
+    
+    private List<UploadedFile> photos;
+
+    @EJB
+    private UserFacade userFacade;
+    
     @EJB
     private ListingFacade listingFacade;
     
@@ -120,18 +132,51 @@ public class ListingManager implements Serializable {
         this.listingPhotoFacade = listingPhotoFacade;
     }
     
+    public UserFacade getUserFacade() {
+        return userFacade;
+    }
+
+    public void setUserFacade(UserFacade userFacade) {
+        this.userFacade = userFacade;
+    }
+    
+    public void handleFileUpload(FileUploadEvent event){
+        photos.add(event.getFile());
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
+
+    public List<UploadedFile> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<UploadedFile> photos) {
+        this.photos = photos;
+    }
+    
     public String createListing() {
         Listing newListing = new Listing();
         
         newListing.setItemName(itemName);
         newListing.setDescription(description);
-        newListing.setPostingDate(postingDate);
+        newListing.setPostingDate(new Date());
         newListing.setPrice(price);
-        newListing.setCategory(category);
+         newListing.setCategory(category);
+         int userPrimaryKey;
+        userPrimaryKey = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user_id");
+        newListing.setUserId(getUserFacade().find(userPrimaryKey));
         
         getListingFacade().create(newListing);
         
-        return "Profile.xhtml?faces-redirect=true";
+       // selected = newListing;
+        
+        return "MyProfile.xhtml?faces-redirect=true";
     }
     
 }

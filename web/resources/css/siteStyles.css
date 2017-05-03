@@ -106,6 +106,7 @@ pText {
     font-size: 14pt;
     font-style: normal;
     font-weight: bold;
+    text-decoration: none;
     color: #FFFFFF;
 }
 
@@ -268,6 +269,8 @@ Style the div component whose unique id is "editableContent" per reference
 #editableContent {
     width: 100%;
     height: calc(100% - 184px); 
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 100px;
     margin-bottom: 16px;
 }
@@ -457,4 +460,18 @@ where the style appears in the CSS document.
 
 .ui-panel {
     background-color: #F0FFFF;
+}
+
+.createListing {
+    text-align: left;
+    background-color: #3e7e98;   /* Darker blueish teal */
+    white-space: nowrap;  /* Disallow line break */
+    align-text: center;
+}
+.ListingCreate {
+    margin: 0 auto;
+}
+.ListingCreate.ui-panelgrid>*>tr,
+.ListingCreate.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
 }
