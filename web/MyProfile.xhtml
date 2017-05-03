@@ -187,9 +187,34 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                     </p:tab>
                     <p:tab title="My Listings">
                         <div style="text-align: center">
-                            <h2>You have not listed an item yet!</h2>
-                            &nbsp;
-                            <p:button value="Create a Listing" outcome="CreateListing"/>
+                            <h:form> 
+                                <p:dataScroller value="#{listingController.items}" var="myListing" chunkSize="10">
+                                    <f:facet name="header">
+                                        My Listings
+                                    </f:facet>
+
+                                    <h:panelGrid columns="2" style="width:100%" columnClasses="listingPic,listingInfo">
+                                        <p:graphicImage value="resources/images/dog.jpg" width="150px" height="150px"/> 
+
+                                        <p:outputPanel>
+                                            <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
+                                                <h:outputText value="Item Name:" />
+                                                <h:outputText value="#{myListing.itemName}" style="font-weight: bold"/>
+                                                
+                                                <h:outputText value="Price:" />
+                                                <h:outputText value="#{myListing.price}" style="font-weight: bold"/>
+
+                                                <h:outputText value="Category:" />
+                                                <h:outputText value="#{myListing.category}" style="font-weight: bold"/>
+
+                                                <h:outputText value="Description:" />
+                                                <h:outputText value="#{myListing.description}" style="font-weight: bold"/>
+                                            </h:panelGrid>
+                                        </p:outputPanel>
+                                    </h:panelGrid>
+                                    <p:separator></p:separator>
+                                </p:dataScroller>
+                            </h:form>
                         </div>
                     </p:tab>
                     <p:tab title="Saved Listings">

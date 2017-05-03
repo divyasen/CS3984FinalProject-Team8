@@ -1,9 +1,12 @@
 package com.mycompany.jsfclasses;
 
 import com.mycompany.entityclasses.Listing;
+import com.mycompany.entityclasses.User;
+import com.mycompany.entityclasses.User;
 import com.mycompany.jsfclasses.util.JsfUtil;
 import com.mycompany.jsfclasses.util.JsfUtil.PersistAction;
 import com.mycompany.sessionbeans.ListingFacade;
+import com.mycompany.sessionbeans.UserFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,10 +25,9 @@ import javax.faces.convert.FacesConverter;
 @Named("listingController")
 @SessionScoped
 public class ListingController implements Serializable {
- @EJB
-    private ListingFacade listingFacade;
 
-   
+    @EJB
+    private ListingFacade listingFacade;
 
     // selected = Selected Listing object
     private Listing selected;
@@ -45,7 +47,10 @@ public class ListingController implements Serializable {
     private List<Listing> browseSportsAndOutdoors = null;
     private List<Listing> browseToysAndGames = null;
     private List<Listing> browseVehicles = null;
-    
+    private List<Listing> myListings = null;
+
+    @EJB
+    private UserFacade userFacade;
 
     public ListingController() {
     }
@@ -56,6 +61,10 @@ public class ListingController implements Serializable {
 
     public void setListingFacade(ListingFacade listingFacade) {
         this.listingFacade = listingFacade;
+    }
+
+    public UserFacade getUserFacade() {
+        return userFacade;
     }
 
     public Listing getSelected() {
@@ -69,34 +78,54 @@ public class ListingController implements Serializable {
     public List<Listing> getBrowseAppliances() {
         return getListingFacade().browseCategoryQuery("Appliances");
     }
+
     public List<Listing> getBrowseArtsAndCrafts() {
         return getListingFacade().browseCategoryQuery("ArtsAndCrafts");
     }
+
     public List<Listing> getBrowseBooks() {
         return getListingFacade().browseCategoryQuery("Books");
     }
+
     public List<Listing> getBrowseClothing() {
         return getListingFacade().browseCategoryQuery("Clothing");
     }
+
     public List<Listing> getBrowseCollectibles() {
         return getListingFacade().browseCategoryQuery("Collectibles");
     }
+
     public List<Listing> getBrowseElectronics() {
         return getListingFacade().browseCategoryQuery("Electronics");
     }
+
     public List<Listing> getBrowseMiscellaneous() {
         return getListingFacade().browseCategoryQuery("Miscellaneous");
     }
+
     public List<Listing> getBrowseSportsAndOutdoors() {
         return getListingFacade().browseCategoryQuery("SportsAndOutdoors");
     }
+
     public List<Listing> getBrowseToysAndGames() {
         return getListingFacade().browseCategoryQuery("ToysAndGames");
     }
+
     public List<Listing> getBrowseVehicles() {
         return getListingFacade().browseCategoryQuery("Vehicles");
     }
-    
+
+    public List<Listing> getMyListings() {
+        // Obtain the username of the logged-in user
+        String user_name = (String) FacesContext.getCurrentInstance()
+                .getExternalContext().getSessionMap().get("username");
+
+        // Obtain the object reference of the logged-in User object
+        User user = getUserFacade().findByUsername(user_name);
+        
+        return getListingFacade().findListingsByUserID(user.getId());
+    }
+
     protected void setEmbeddableKeys() {
     }
 

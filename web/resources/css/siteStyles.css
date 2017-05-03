@@ -188,6 +188,36 @@ pText {
 .profileColumn2 {
     text-align: left;
 }
+
+/*Listing columns */
+.listingPic {
+    align-content: flex-start;
+    width: 170px;
+}
+
+.listingInfo {
+    text-align: left;
+    background-color: #f6f7f7;
+}
+
+.listingInfoText1 {
+    padding-left: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: 300;
+    color: #000000;
+    
+}
+
+.listingInfoText2 {
+    padding-left: 30pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-style: normal;
+    font-weight: 400;
+    color: #2a2b2b;
+}
 /*
 ==================
 Styling Hyperlinks
