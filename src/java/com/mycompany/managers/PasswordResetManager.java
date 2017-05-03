@@ -218,7 +218,7 @@ public class PasswordResetManager implements Serializable {
             }
 
             // Redirect to show the index (Home) page
-            return "index?faces-redirect=true";
+            return "SignIn?faces-redirect=true";
 
         } else {
             // Redirect to show the ResetPassword page

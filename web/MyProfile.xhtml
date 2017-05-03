@@ -32,14 +32,15 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
             <p:growl id="growl" life="5000" />
 
             <h:form id="UserProfileForm">
-                <p:tabView dynamic="true" >
+                <p:tabView dynamic="true">
                     <p:tab title="My Profile">
-
                         <table width="100%" border="0" cellspacing="0" cellpadding="10">
                             <tr>
                                 <td colspan="2" rowspan="6">
                                     <div style="text-align: center">
-                                        <h:graphicImage value="#{accountManager.userPhoto()}" styleClass="profilePhoto" />
+                                        <h:graphicImage value="#{accountManager.userPhoto()}" styleClass="profilePhoto"/>
+                                        <br/>
+                                        <h:link outcome="ChangePhoto">[Edit Photo]</h:link>
                                     </div>
                                 </td>
                                 <td colspan="2" rowspan="7">
@@ -51,8 +52,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><div style="text-align: left"><pText>#{accountManager.selected.firstName}</pText></div></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Middle Name: </pText></div></td>
@@ -60,8 +60,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.middleName}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Last Name: </pText></div></td>
@@ -69,8 +68,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.lastName}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Address 1: </pText></div></td>
@@ -78,8 +76,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.address1}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Address 2: </pText></div></td>
@@ -87,8 +84,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.address2}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>City: </pText></div></td>
@@ -96,8 +92,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.city}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>State: </pText></div></td>
@@ -105,8 +100,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.state}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Zip Code: </pText></div></td>
@@ -114,8 +108,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.zipcode}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Email: </pText></div></td>
@@ -123,8 +116,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.email}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Phone Number: </pText></div></td>
@@ -132,8 +124,7 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.phoneNumber}</pText></td>
-                                                <td></td>
-                                                <td></td>
+
                                             </tr>
                                             <tr>
                                                 <td><div style="text-align: right"><pText>Username: </pText></div></td>
@@ -141,8 +132,35 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                 <td></td>
                                                 <td></td>
                                                 <td><pText>#{accountManager.selected.username}</pText></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><div style="text-align: right">
+                                                        <p:button outcome="EditAccount" value="Edit Account" icon="ui-icon-scissors"/>
+                                                    </div></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <p:commandButton value="Delete Account" icon="ui-icon-trash" oncomplete="PF('ConfirmPasswordDialog').show()" 
+                                                                     update=":ConfirmPasswordForm">
+
+                                                        <p:confirm header="Account Deletion Confirmation" 
+                                                                   message="Are you sure to permanently delete your account? This cannot be undone!" 
+                                                                   icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade">
+                                                        <div align="center">
+
+                                                            <p:commandButton value="NO" type="button" 
+                                                                             styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                                            &nbsp;
+                                                            <p:commandButton value="YES" type="button" 
+                                                                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        </div>
+                                                    </p:confirmDialog>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
@@ -171,143 +189,14 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                         <div style="text-align: center">
                             <h2>You have not listed an item yet!</h2>
                             &nbsp;
-                            <p:button value="Create a Listing" outcome="index"/>
+                            <p:button value="Create a Listing" outcome="CreateListing"/>
                         </div>
                     </p:tab>
                     <p:tab title="Saved Listings">
                         <div style="text-align: center">
                             <h2>You have not saved any listings!</h2>
-                        </div>
-                    </p:tab>
-                    <p:tab title="Account Settings">
-                        <div align="center" style="width:50%; margin:0 auto;">
-
-                            <!-- Error messages will be shown here if any -->
-                            <p:messages id="msgs" showIcon="false"/>
-                            <h:outputLabel id="form-error-message" class="errorMessages" value="#{accountManager.statusMessage}"/>
-
-                            <h:form id="EditAccountProfileForm">
-
-                                <h2>Edit Account Profile</h2>
-
-                                <f:event listener="#{accountManager.validatePasswordChange}" type="postValidate"/>
-
-                                <p:panelGrid columns="2" columnClasses="accountColumn1, accountColumn2">
-
-                                    <!-- FIRST NAME -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_firstName}" for="firstName" styleClass="createAccountText"/>
-                                    <p:inputText id="firstName" value="#{accountManager.selected.firstName}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_firstName}" label="First Name">
-                                        <f:validateLength minimum="2" />
-                                    </p:inputText>   
-
-                                    <!-- MIDDLE NAME -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_middleName}" for="middleName" styleClass="createAccountText"/>
-                                    <p:inputText id="middleName" value="#{accountManager.selected.middleName}"
-                                                 required="false" styleClass="accountInputTextField" label="Middle Name">
-                                    </p:inputText>
-
-                                    <!-- LAST NAME -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_lastName}" for="lastName" styleClass="createAccountText"/>
-                                    <p:inputText id="lastName" value="#{accountManager.selected.lastName}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_lastName}" label="Last Name">
-                                        <f:validateLength minimum="2" />
-                                    </p:inputText>
-
-                                    <!-- ADDRESS LINE 1 -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_address1}" for="address1" styleClass="createAccountText"/>
-                                    <p:inputText id="address1" value="#{accountManager.selected.address1}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_address1}" label="Address Line 1">
-                                        <f:validateLength minimum="2" />
-                                    </p:inputText>
-
-                                    <!-- ADDRESS LINE 2 -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_address2}" for="address2" styleClass="createAccountText"/>
-                                    <p:inputText id="address2" value="#{accountManager.selected.address2}" styleClass="accountInputTextField" label="Address Line 2">
-                                    </p:inputText>
-
-                                    <!-- CITY -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_city}" for="city" styleClass="createAccountText"/>
-                                    <p:inputText id="city" value="#{accountManager.selected.city}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_city}" label="City">
-                                        <f:validateLength minimum="2" />
-                                    </p:inputText>
-
-                                    <!-- STATE ABBREVIATION -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_state}" for="state" styleClass="createAccountText"/>
-                                    <h:selectOneMenu id="state" value="#{accountManager.selected.state}" required="true" >
-                                        <f:selectItems value="#{accountManager.listOfStates}" var="state"
-                                                       itemLabel="#{state}" itemValue="#{state}" />
-                                    </h:selectOneMenu>
-
-                                    <!-- ZIP CODE -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_zipcode}" for="zipcode" styleClass="createAccountText"/>
-                                    <p:inputText id="zipcode" value="#{accountManager.selected.zipcode}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_zipcode}" label="Zip Code" >
-                                        <f:validateLength minimum="5" />
-                                        <f:validator validatorId="zipCodeValidator"/> 
-                                    </p:inputText>
-
-                                    <!-- EMAIL ADDRESS -->
-                                    <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" styleClass="createAccountText"/>
-                                    <p:inputText id="email" value="#{accountManager.selected.email}" required="true" styleClass="accountInputTextField"
-                                                 requiredMessage="#{bundle.EditUserRequiredMessage_email}" label="Email">
-                                        <f:validateLength minimum="2" />
-                                        <f:validator validatorId="emailValidator" />  
-                                    </p:inputText>
-
-                                    <!-- PHONE NUMBER -->
-                                    <p:outputLabel value="#{bundle.CreateUserLabel_phoneNumber}" for="phoneNumber" styleClass="createAccountText"/>
-                                    <p:inputMask id="phoneNumber" value="#{accountManager.selected.phoneNumber}" mask="(999) 999-9999" required="true"
-                                                 styleClass="accountInputTextField" requiredMessage="#{bundle.EditUserRequiredMessage_phoneNumber}" label="Phone"/>
-
-                                    <p:outputLabel value="#{bundle.ViewUserLabel_username}" styleClass="createAccountText" indicateRequired="false"/>
-                                    <p:outputLabel value="#{accountManager.selected.username}" styleClass="createAccountText" indicateRequired="false"/>
-
-                                    <h:outputLabel value="" />
-                                    <p:outputLabel value="Fill in Only to Change Password" styleClass="createAccountText" indicateRequired="false"/>
-
-                                    <!-- PASSWORD CHANGE -->
-                                    <p:outputLabel value="New Password:" for="newPassword" styleClass="createAccountText" indicateRequired="false"/>
-
-                                    <!-- ADDRESS LINE 1 -->
-                                    <p:password id="newPassword" value="#{accountManager.newPassword}" feedback="true" styleClass="accountInputTextField">
-                                        <!-- Execute the "validate" method in the "PasswordValidator.java" class file to validate the password entered. -->
-                                        <f:validator validatorId="passwordValidator" /> 
-                                    </p:password>
-
-                                    <!-- p:password changes the characters typed to bullets to hide the password as it is typed -->
-
-                                    <p:outputLabel value="Confirm New Password:" for="newConfirmPassword" styleClass="createAccountText" indicateRequired="false"/>
-                                    <p:password id="newConfirmPassword" value="toBeReadFromThisFieldByAccountManager" styleClass="accountInputTextField" />
-
-                                </p:panelGrid>
-
-                                <br />
-                                <p:commandButton id="submit" value="Save" action="#{accountManager.updateAccount()}" 
-                                                 styleClass="commandButton" ajax="false" icon="ui-icon-disk" />
-                                <p:spacer width="10"/>
-                                <p:button outcome="MyProfile" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />
-                                <p:spacer width="10"/>
-                                <p:commandButton value="Delete Account" icon="ui-icon-trash" oncomplete="PF('ConfirmPasswordDialog').show()" 
-                                                 update=":ConfirmPasswordForm">
-
-                                    <p:confirm header="Account Deletion Confirmation" 
-                                               message="Are you sure to permanently delete your account? This cannot be undone!" 
-                                               icon="ui-icon-alert" />
-                                </p:commandButton>
-
-                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade">
-                                    <div align="center">
-
-                                        <p:commandButton value="NO" type="button" 
-                                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                        &nbsp;
-                                        <p:commandButton value="YES" type="button" 
-                                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    </div>
-                                </p:confirmDialog>
-                            </h:form>
+                            &nbsp;
+                            <p:button value="Browse Listings" outcome="Browse/AllBrowse"/>
                         </div>
                     </p:tab>
                 </p:tabView>
