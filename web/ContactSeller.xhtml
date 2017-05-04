@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Woo Jin Kye on 2017.05.04 
+Copyright © 2017 Osman Balci. All rights reserved.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="template/siteTemplate.xhtml">
+
+        <ui:define name="title">
+            <!-- Set the page title to Contact Us -->
+            <h:outputText value="Send Email"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+            <div align="center">
+
+                <!-- Error messages will be shown here if any  -->
+                <p:messages id="msgs" />
+                <h:outputText id="formMessage" class="errorMessages" value="#{emailSender.statusMessage}" />
+
+                <h:form id="EmailCompositionForm"> 
+
+                    <h1>Compose and Send Your Email Message</h1>
+
+                    <p:editor id="editor" widgetVar="editorWidget" value="#{editorViewManager.text}" 
+                              width="600" height="350" />
+                    <br />
+
+                    <p:commandButton value="Send Email" icon="ui-icon-mail-closed" ajax="false"
+                                     type="submit" action="#{emailSenderManager.sendEmail()}" />
+                    
+                    <br /><br />
+                </h:form>
+
+            </div>
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>
