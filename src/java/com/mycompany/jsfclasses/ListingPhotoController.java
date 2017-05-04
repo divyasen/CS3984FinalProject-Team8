@@ -159,7 +159,7 @@ public class ListingPhotoController implements Serializable {
                 return null;
             }
         }
-
+        
     }
 
 }

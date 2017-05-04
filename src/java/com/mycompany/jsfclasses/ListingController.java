@@ -34,7 +34,7 @@ public class ListingController implements Serializable {
     
     @EJB
     private ListingFacade listingFacade;
-
+    
     // selected = Selected Listing object
     private Listing selected;
 
@@ -247,7 +247,7 @@ public class ListingController implements Serializable {
                 return null;
             }
         }
-
+        
     }
     
 
