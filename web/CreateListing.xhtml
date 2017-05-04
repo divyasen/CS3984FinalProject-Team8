@@ -81,7 +81,7 @@ Copyright © 2017 Divya Sengar. All rights reserved.
 
                         <p:outputLabel value="Upload some Photos" for="photoUpload" styleClass="createAccountText"/>
                         <p:fileUpload id="photoUpload" fileUploadListener="#{listingManager.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                          multiple="true" update="messages" sizeLimit="10000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />                
+                          required="true" multiple="true" update="messages" sizeLimit="10000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />                
                         <p:growl id="messages" showDetail="true" />
                     </p:panelGrid>
                     <br />
