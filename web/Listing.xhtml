@@ -43,6 +43,11 @@ f
 
                                     <h:outputText value="Description:" />
                                     <h:outputText value="#{listingController.selected.description}" style="font-weight: bold"/>
+                                    <c:if test="#{listingController.isMine()}">
+                                         <p:button outcome="EditListing" value="EditListing" icon="ui-icon-person"/>
+
+                                         
+                                    </c:if>
                                 </h:panelGrid>
                     </p:panel>
                 </h:panelGrid>

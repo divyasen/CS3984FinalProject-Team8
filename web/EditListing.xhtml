@@ -39,14 +39,14 @@ Copyright © 2017 Divya Sengar. All rights reserved.
                     <p:panelGrid columns="1"  styleClass="ListingCreate" columnClasses="createListing">
                         <!-- Item Name -->
                         <p:outputLabel value="What is the name of your product?" for="itemName" styleClass="createAccountText" />
-                        <p:inputText id="itemName" value="#{listingManager.selected.itemName}" required="true" styleClass="listingInputTextField"
+                        <p:inputText id="itemName" value="#{listingController.selected.itemName}" required="true" styleClass="listingInputTextField"
                                      requiredMessage="Product name is required" label="Item Name">
                             <f:validateLength minimum="2" />
                         </p:inputText>   
                         <br style="background-color: #519ab8;"/>
                         <!-- DESCRIPTION -->
                         <p:outputLabel value="Post a description:" for="description" styleClass="createAccountText"/>
-                        <p:inputTextarea rows="6" cols="60" id="description" value="#{listingManager.selected.description}"
+                        <p:inputTextarea rows="6" cols="60" id="description" value="#{listingController.selected.description}"
                                      required="true" requiredMessage="Description is required" styleClass="listingInputTextField" label="Description">
                         </p:inputTextarea>
 
@@ -55,7 +55,7 @@ Copyright © 2017 Divya Sengar. All rights reserved.
 
                         <!-- ADDRESS LINE 1 -->
                         <p:outputLabel value="Set the price:" for="price" styleClass="createAccountText"/>
-                        <p:inputText id="price" value="#{listingManager.selected.price}" required="true" styleClass="listingInputTextField"
+                        <p:inputText id="price" value="#{listingController.selected.price}" required="true" styleClass="listingInputTextField"
                                      requiredMessage="The Price is required!" label="Price">
                              <f:convertNumber type="currency" currencySymbol="$"/>
                         </p:inputText>
@@ -63,7 +63,7 @@ Copyright © 2017 Divya Sengar. All rights reserved.
 
                         <!-- ADDRESS LINE 2 -->
                         <p:outputLabel value="Which category does your product belong to?" for="category" styleClass="createAccountText"/>
-                        <p:selectOneMenu id="category" required="true" value="#{listingManager.selected.category}" label="Category">
+                        <p:selectOneMenu id="category" required="true" value="#{listingController.selected.category}" label="Category">
                              <f:selectItem itemLabel="Select One" itemValue="" />
                             <f:selectItem itemLabel="Appliances" itemValue="Appliances" />
                             <f:selectItem itemLabel="Arts and Craft" itemValue="ArtsAndCrafts" />
@@ -80,7 +80,7 @@ Copyright © 2017 Divya Sengar. All rights reserved.
                     </p:panelGrid>
                     <br />
                     
-                    <p:commandButton id="Submit" value="Submit" action="#{listingManager.updateListing()}" 
+                    <p:commandButton id="Submit" value="Submit" action="#{listingController.updateListing()}" 
                                      styleClass="commandButton" ajax="false" icon="ui-icon-extlink" />
                     
                     <p:button outcome="index" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />

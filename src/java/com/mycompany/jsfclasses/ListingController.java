@@ -264,4 +264,44 @@ public class ListingController implements Serializable {
     public void browse(ActionEvent actionEvent) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect("Browse.xhtml");
     }
+    
+    public boolean isMine(){
+        int listingId = selected.getId();
+          int userPrimaryKey = 0;
+        try{
+       userPrimaryKey = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user_id");
+        }
+        catch(NullPointerException e){
+            return false;
+        }
+       
+       //User user = getUserFacade().find(userPrimaryKey);
+       List<Listing> list = getFacade().findListingsByUserID(userPrimaryKey);
+       for(int i = 0; i< list.size(); i++){
+           if(listingId == list.get(i).getId()){
+           return true;
+           }
+       }
+       return false;
+    }
+    
+      public String updateListing() {
+
+
+            Listing listing = selected;
+
+
+                listing.setItemName(this.selected.getItemName());
+                listing.setCategory(this.selected.getCategory());
+                listing.setDescription(this.selected.getDescription());
+                listing.setPrice(this.selected.getPrice());
+
+                // Store the changes in the CloudDriveDB database
+                getListingFacade().edit(listing);
+
+            
+            // Account update is completed, redirect to show the Profile page.
+            return "MyProfile.xhtml?faces-redirect=true";
+        
+    }
 }
