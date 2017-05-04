@@ -52,6 +52,9 @@ Copyright © 2017 Zoe Smith. All rights reserved.
 
                                         <h:outputText value="Description:" />
                                         <h:outputText value="#{myListing.description}" style="font-weight: bold"/>
+
+                                        <p:commandButton action="#{editorViewManager.setText(myListing.itemName, myListing.price, myListing.postingDate, accountManager.selected.email, accountManager.selected.phoneNumber, userController.getUser(myListing.userId.id).email)}"
+                                                         value="Contact Seller" icon="ui-icon-phone" ajax="true"/>
                                     </h:panelGrid>
                                 </h:commandLink>
                             </p:outputPanel>
