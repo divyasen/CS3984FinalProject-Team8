@@ -156,11 +156,13 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                         My Listings
                                     </f:facet>
 
-                                    <h:panelGrid columns="2" style="width:100%" columnClasses="listingPic,listingInfo">
-                                        <h:graphicImage value="#{listingManager.getSinglePhoto(myListing.id)}" width="150px" height="150px"/> 
+                                    <h:panelGrid columns="3" style="width:100%" columnClasses="listingPic,listingInfo,listingButtons">
+                                        <p:galleria value="#{listingManager.getPhotos(myListing.id)}" var="image" panelWidth="200" panelHeight="125" showCaption="false">
+                                            <p:graphicImage value="#{image}" title="#{image}" height="125px"/>
+                                        </p:galleria>
+
 
                                         <p:outputPanel>
-                                            <h:link outcome="ListingPage">
                                                 <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
                                                     <h:outputText value="Item Name:" />
                                                     <h:outputText value="#{myListing.itemName}" style="font-weight: bold"/>
@@ -176,8 +178,20 @@ Copyright © 2017 Travis Weissenberger. All rights reserved.
                                                     <h:outputText value="Description:" />
                                                     <h:outputText value="#{myListing.description}" style="font-weight: bold"/>
                                                 </h:panelGrid>
-                                            </h:link>
                                         </p:outputPanel>
+
+                                        <p:outputPanel>
+                                            <p:commandButton value="Edit Listing" icon="ui-icon-pencil" actionListener="#{listingManager.setSelected(myListing)}" action="EditListing"/>
+                                            <br/>
+                                            <br/>
+                                            <p:commandButton value="Delete Listing" icon="ui-icon-trash">
+
+                                                <p:confirm header="Account Deletion Confirmation" 
+                                                           message="Are you sure you want to permanently delete this listing? This cannot be undone!" 
+                                                           icon="ui-icon-alert" />
+                                            </p:commandButton>
+                                        </p:outputPanel>
+
                                     </h:panelGrid>
                                     <p:separator></p:separator>
                                 </p:dataScroller>

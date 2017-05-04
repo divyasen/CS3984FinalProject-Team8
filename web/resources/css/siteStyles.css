@@ -190,14 +190,28 @@ pText {
 }
 
 /*Listing columns */
+.browseListingPic {
+    width: 225px;
+}
+
+.browseListingInfo {
+    text-align: left;
+    background-color: #ffffff;
+    width: calc(100% - 200px);
+}
+
+/*Listing columns */
 .listingPic {
-    align-content: flex-start;
-    width: 170px;
+    width: 225px;
 }
 
 .listingInfo {
     text-align: left;
-    background-color: #f6f7f7;
+    background-color: #ffffff;
+}
+
+listingButtons {
+    width: 150px;
 }
 
 .listingInfoText1 {

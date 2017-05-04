@@ -211,24 +211,24 @@ public class ListingManager implements Serializable {
                 index++;
             }
             if (photo2 != null) {
-               uploadPhoto(photo2,index);
-                 index++;
-              
-            } 
+                uploadPhoto(photo2, index);
+                index++;
+
+            }
             if (photo3 != null) {
-                uploadPhoto(photo3,index);
+                uploadPhoto(photo3, index);
                 index++;
-                
-            } 
+
+            }
             if (photo4 != null) {
-                uploadPhoto(photo4,index);
+                uploadPhoto(photo4, index);
                 index++;
-                
-            } 
+
+            }
             if (photo5 != null) {
-                uploadPhoto(photo5,index);
+                uploadPhoto(photo5, index);
                 index++;
-                
+
             }
         } catch (IOException ex) {
             Logger.getLogger(ListingManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,7 +239,7 @@ public class ListingManager implements Serializable {
         photo3 = null;
         photo4 = null;
         photo5 = null;
-        
+
         return "MyProfile.xhtml?faces-redirect=true";
     }
 
@@ -356,19 +356,55 @@ public class ListingManager implements Serializable {
             return filename.substring(index + 1);
         }
     }
-    
-     public String getSinglePhoto(int listingId){
-          ListingPhoto list = getListingPhotoFacade().findPhotosByListingID(listingId).get(0);
-          String temp = Constants.LISTING_PHOTOS_RELATIVE_PATH +listingId + "_0." +list.getExtension();
-          return temp;
+
+    public String getSinglePhoto(int listingId) {
+        ListingPhoto list = getListingPhotoFacade().findPhotosByListingID(listingId).get(0);
+        String temp = Constants.LISTING_PHOTOS_RELATIVE_PATH + listingId + "_0." + list.getExtension();
+        return temp;
+    }
+
+    public List<String> getPhotos(int listingId) {
+        List<ListingPhoto> list = getListingPhotoFacade().findPhotosByListingID(listingId);
+        List<String> answer = new ArrayList<String>();
+        for (int i = 0; i < list.size(); i++) {
+            answer.add(Constants.LISTING_PHOTOS_RELATIVE_PATH + listingId + "_" + i + "." + list.get(i).getExtension());
         }
-        
-        public List<String> getPhotos(int listingId){
-          List<ListingPhoto> list = getListingPhotoFacade().findPhotosByListingID(listingId);
-          List<String> answer = new ArrayList<String>();
-          for(int i = 0;i< list.size();i++){
-              answer.add(Constants.LISTING_PHOTOS_RELATIVE_PATH + listingId + "_" +i+ "." +list.get(i).getExtension());
+        return answer;
+    }
+
+    /*
+    Update the signed-in user's account profile. Return "" if an error occurs;
+    otherwise, upon successful account update, redirect to show the Profile page.
+     */
+    public String updateListing() {
+
+        if (statusMessage == null || statusMessage.isEmpty()) {
+
+            Listing listing = selected;
+
+            try {
+
+                listing.setItemName(this.selected.getItemName());
+                listing.setCategory(this.selected.getCategory());
+                listing.setDescription(this.selected.getDescription());
+                listing.setPrice(this.selected.getPrice());
+
+                // Store the changes in the CloudDriveDB database
+                getListingFacade().edit(listing);
+
+            } catch (EJBException e) {
+                statusMessage = "Something went wrong while editing user's profile! See: " + e.getMessage();
+                return "";
+            }
+            // Account update is completed, redirect to show the Profile page.
+            return "MyProfile.xhtml?faces-redirect=true";
         }
-          return answer;
-}
+        return "";
+
+    }
+
+    public String editListing(Listing listing) {
+        setSelected(listing);
+        return "EditListing.xhtml?faces-redirect=true";
+    }
 }

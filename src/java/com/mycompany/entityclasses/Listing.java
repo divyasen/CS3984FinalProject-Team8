@@ -5,6 +5,7 @@
 package com.mycompany.entityclasses;
 
 import com.mycompany.managers.Constants;
+import com.mycompany.jsfclasses.ListingController;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -28,6 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -189,6 +191,10 @@ public class Listing implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.entityclasses.Listing[ id=" + id + " ]";
+    }
+    
+    public void editListing() {
+        
     }
 
 }

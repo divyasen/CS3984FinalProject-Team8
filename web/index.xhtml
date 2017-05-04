@@ -20,19 +20,10 @@ Copyright © 2016 Travis Weissenberger. All rights reserved.
         <ui:define name="editableContent">
 
             <div align="center">
-                <p:contentFlow id="simple">
-                    <p:graphicImage value="/resources/images/image1.png"
+                <p:contentFlow id="simple" value="#{listingController.items}" var="aListingPhoto">
+                    <p:graphicImage value="#{listingPhotoController.getListingPhoto(aListingPhoto.getId())}"
+                                    url="index"
                                     styleClass="content" />
-                    <p:graphicImage value="/resources/images/image2.png"
-                                    styleClass="content" />
-                    <p:graphicImage value="/resources/images/image3.png"
-                                    styleClass="content" />
-                    <p:graphicImage value="/resources/images/image4.png"
-                                    styleClass="content" />
-                    <p:graphicImage value="/resources/images/image5.png"
-                                    styleClass="content" />
-                    <p:graphicImage value="/resources/images/image6.png"
-                                    styleClass="content" /> 
                 </p:contentFlow>
             </div>
         </ui:define>
