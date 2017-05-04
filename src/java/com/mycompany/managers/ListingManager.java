@@ -372,6 +372,24 @@ public class ListingManager implements Serializable {
         return answer;
     }
 
+    public List<String> getAllPhotos() {
+        List<ListingPhoto> list = getListingPhotoFacade().findAllPhotos();
+        List<String> answer = new ArrayList<String>();
+        
+        Integer temp = list.get(0).getListingId().getId();
+        int count = 0;
+        
+        for (int i = 0; i < list.size(); i++) {
+            if (temp != list.get(i).getListingId().getId()) {
+                temp = list.get(i).getListingId().getId();
+                count = 0;
+            }
+            answer.add(Constants.LISTING_PHOTOS_RELATIVE_PATH + list.get(i).getListingId().getId() + "_" + count + "." + list.get(i).getExtension());
+            count++;
+        }
+        return answer;
+    }
+
     /*
     Update the signed-in user's account profile. Return "" if an error occurs;
     otherwise, upon successful account update, redirect to show the Profile page.

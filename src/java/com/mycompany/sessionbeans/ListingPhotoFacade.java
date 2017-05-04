@@ -35,6 +35,10 @@ public class ListingPhotoFacade extends AbstractFacade<ListingPhoto> {
                 .setParameter("listingId", listingID)
                 .getResultList();
     }
+    
+    public List<ListingPhoto> findAllPhotos() {
+        return (List<ListingPhoto>) em.createNamedQuery("ListingPhoto.findAll").getResultList();
+    }
 
     
 }
