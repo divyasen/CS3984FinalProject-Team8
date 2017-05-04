@@ -7,6 +7,7 @@ import com.mycompany.jsfclasses.util.JsfUtil;
 import com.mycompany.jsfclasses.util.JsfUtil.PersistAction;
 import com.mycompany.sessionbeans.ListingFacade;
 import com.mycompany.sessionbeans.UserFacade;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,11 +22,16 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 
 @Named("listingController")
 @SessionScoped
 public class ListingController implements Serializable {
 
+    private String searchString;
+    private String searchField;
+    private String category;
+    
     @EJB
     private ListingFacade listingFacade;
 
@@ -34,6 +40,9 @@ public class ListingController implements Serializable {
 
     // items = list of Listing objects
     private List<Listing> items = null;
+    private List<Listing> searchItems = null;
+    private List<Listing> browseItems = null;
+    
     @EJB
     private com.mycompany.sessionbeans.ListingFacade ejbFacade;
 
@@ -65,6 +74,30 @@ public class ListingController implements Serializable {
 
     public UserFacade getUserFacade() {
         return userFacade;
+    }
+    
+    public String getSearchField() {
+        return searchField;
+    }
+
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
+    }
+
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }
+    
+    public String getCategory() {
+        return category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Listing getSelected() {
@@ -167,6 +200,25 @@ public class ListingController implements Serializable {
         }
         return items;
     }
+    
+    
+    /*
+    Return the list of object references of all those Listings where 
+    the search string 'searchString' entered by the user is contained in the searchField.
+     */
+    public List<Listing> getSearchItems() {
+        return getListingFacade().searchQuery(searchString, searchField);
+    }
+    
+    /*Return the list of object references of all those Listings where
+    their category is 'category'
+    */
+    public List<Listing> getBrowseItems() {
+        if (category.equals("all")) {
+            return getItems();
+        }
+        return getListingFacade().browseCategoryQuery(category);
+    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -248,5 +300,19 @@ public class ListingController implements Serializable {
         }
 
     }
+    
 
+    /**
+     * @SessionScoped enables to preserve the values of the instance variables for the SearchResults.xhtml page to access.
+     *
+     * @param actionEvent refers to clicking the Submit button
+     * @throws IOException if the page to be redirected to cannot be found
+     */
+    public void search(ActionEvent actionEvent) throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("SearchResults.xhtml");
+    }
+
+    public void browse(ActionEvent actionEvent) throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Browse.xhtml");
+    }
 }

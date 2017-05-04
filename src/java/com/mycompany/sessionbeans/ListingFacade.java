@@ -28,14 +28,13 @@ public class ListingFacade extends AbstractFacade<Listing> {
     public ListingFacade() {
         super(Listing.class);
     }
-    
-    
+
     public Listing getListing(int id) {
-        
+
         // The find method is inherited from the parent AbstractFacade class
         return em.find(Listing.class, id);
     }
-    
+
     public List<Listing> findListingsByUserID(Integer userID) {
         /*
         The following @NamedQuery definition is given in Listing.java entity class file:
@@ -49,12 +48,30 @@ public class ListingFacade extends AbstractFacade<Listing> {
 
         return userFiles;
     }
-    
+
     public List<Listing> browseCategoryQuery(String browseCategory) {
         // Place the % wildcard before and after the search string to search for it anywhere in the publicVideo name 
         browseCategory = "%" + browseCategory + "%";
         // Conduct the search in a case-insensitive manner and return the results in a list.
         return getEntityManager().createQuery("SELECT c FROM Listing c WHERE c.category LIKE :browseCategory").setParameter("browseCategory", browseCategory).getResultList();
     }
+
+    public List<Listing> searchQuery(String searchString, String browseCategory) {
+        // Place the % wildcard before and after the search string to search for it anywhere in the name 
+        searchString = "%" + searchString + "%";
+        
+        if (browseCategory.equals("all")) {
+            browseCategory = "%" + browseCategory + "%";
+            return getEntityManager().createQuery("SELECT l FROM Listing l WHERE l.itemName LIKE :searchString OR l.description LIKE :searchString").setParameter("searchString", searchString).getResultList();
+        }
+        // Conduct the search in a case-insensitive manner and return the results in a list.
+        return getEntityManager().createQuery("SELECT l FROM Listing l WHERE (l.itemName LIKE :searchString OR l.description LIKE :searchString) AND l.category LIKE :browseCategory").setParameter("searchString", searchString).setParameter("browseCategory", browseCategory).getResultList();
+    }
     
+    public List<Listing> browseQuery(String category) {
+        category = "%" + category + "%";
+        
+        return getEntityManager().createQuery("SELECT l FROM Listing l WHERE l.categroy LIKE :category").setParameter("category", category).getResultList();
+    }
+
 }

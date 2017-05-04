@@ -5,7 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!--
     *********************************************
@@ -46,44 +47,18 @@
                         <p:spacer width="7" height="10"/>
                         <p:button outcome="MyProfile" value="My Account" icon="ui-icon-person"/>
                         <p:spacer width="7" height="10"/>
-                        <p:menuButton value="Browse">
-                            <p:menuitem value="Appliances" outcome="Browse/AppliancesBrowse" ajax="false"/>
-                            <p:menuitem value="Arts &amp; Crafts" outcome="Browse/ArtsAndCraftsBrowse" ajax="false"/>
-                            <p:menuitem value="Books" outcome="Browse/BooksBrowse" ajax="false"/>
-                            <p:menuitem value="Clothing" outcome="Browse/ClothingBrowse" ajax="false"/>
-                            <p:menuitem value="Collectibles" outcome="Browse/CollectiblesBrowse" ajax="false"/>
-                            <p:menuitem value="Electronics" outcome="Browse/ElectronicsBrowse" ajax="false"/>
-                            <p:menuitem value="Miscellaneous" outcome="Browse/MiscellaneousBrowse" ajax="false"/>
-                            <p:menuitem value="Sports &amp; Outdoors" outcome="Browse/SportsAndOutdoorsBrowse" ajax="false"/>
-                            <p:menuitem value="Toys &amp; Games" outcome="Browse/ToysAndGamesBrowse" ajax="false"/>
-                            <p:menuitem value="Vehicles" outcome="Browse/VehiclesBrowse" ajax="false"/>
-                            <p:separator />
-                            <p:menuitem value="All Categories" outcome="Browse/AllBrowse" ajax="false"/>
-                        </p:menuButton>
+                        <p:commandButton value="Browse" oncomplete="PF('ListingBrowseDialog').show()" icon="ui-icon-note"/>
                         <p:spacer width="7" height="10"/>
-                        <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
+                        <p:commandButton value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </c:if>
                     <c:if test="#{accountManager.isLoggedIn() == false}">
                         <p:button outcome="SignIn" value="Sign In" icon="ui-icon-arrowreturnthick-1-e"/>
                         <p:spacer width="7" height="10"/>
                         <p:button outcome="CreateAnAccount" value="Create an Account" icon="ui-icon-person"/>
                         <p:spacer width="7" height="10"/>
-                        <p:menuButton value="Browse">
-                            <p:menuitem value="Appliances" outcome="Browse/AppliancesBrowse" ajax="false"/>
-                            <p:menuitem value="Arts &amp; Crafts" outcome="Browse/ArtsAndCraftsBrowse" ajax="false"/>
-                            <p:menuitem value="Books" outcome="Browse/BooksBrowse" ajax="false"/>
-                            <p:menuitem value="Clothing" outcome="Browse/ClothingBrowse" ajax="false"/>
-                            <p:menuitem value="Collectibles" outcome="Browse/CollectiblesBrowse" ajax="false"/>
-                            <p:menuitem value="Electronics" outcome="Browse/ElectronicsBrowse" ajax="false"/>
-                            <p:menuitem value="Miscellaneous" outcome="Browse/MiscellaneousBrowse" ajax="false"/>
-                            <p:menuitem value="Sports &amp; Outdoors" outcome="Browse/SportsAndOutdoorsBrowse" ajax="false"/>
-                            <p:menuitem value="Toys &amp; Games" outcome="Browse/ToysAndGamesBrowse" ajax="false"/>
-                            <p:menuitem value="Vehicles" outcome="Browse/VehiclesBrowse" ajax="false"/>
-                            <p:separator />
-                            <p:menuitem value="All Categories" outcome="Browse/AllBrowse" ajax="false"/>
-                        </p:menuButton>
+                        <p:commandButton value="Browse" oncomplete="PF('ListingBrowseDialog').show()" icon="ui-icon-note"/>
                         <p:spacer width="7" height="10"/>
-                        <p:button value="Search" onclick="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
+                        <p:commandButton value="Search" oncomplete="PF('ListingSearchDialog').show()" icon="ui-icon-search"/>
                     </c:if>
 
                 </h:form>
@@ -98,45 +73,102 @@
         |  the user to enter a search query and click the Search button.   |
         ====================================================================
         -->
-        <p:dialog position="center center" id="ListingSearchDialog" widgetVar="ListingSearchDialog" 
-                  modal="true" resizable="false" appendTo="@(body)" header="Search Listings" width="300px">
+        <p:dialog position="center center" id="ListingSearchDlg" widgetVar="ListingSearchDialog" modal="true" 
+                  resizable="false" appendTo="@(body)" header="Search Listings Directory" >
 
-            <h:form id="searchDialogForm">
-                <div align="center" bgcolor="#3e7e98" >
-                    <br />
-                    <h:outputLabel for="searchQueryField" value="Search Listings:" />
-                    <br /><br />
+            <h:form id="ListingSearchForm">
+                <p:panel>                
 
-                    <!-- 
-                    The search query entered by the user in the inputText field is set to be 
-                    the value of the searchQuery property of the searchedListingController
-                    CDI @Named bean by using the Expression Language.
-                    -->
-                    <h:inputText id="searchQueryField" style="width:200px"
-                                 value="#{searchedListingController.searchQuery}" >
-                    </h:inputText>  
-                    <br /><br /><br />
+                    <h:panelGrid columns="4">
 
-                    <!--  SEARCH button:
-                    Clicking the Search button invokes the performSearch() method of the
-                    searchedListingController CDI @Named bean. The performSearch() method executes
-                    the search for the searchQuery property value and at the end of the execution with
-                    
-                        return "ListingSearchResults?faces-redirect=true";
-                    
-                    it returns "ListingSearchResults" as the name of the XHTML file to display.
-                    -->
-                    <p:commandButton value="Search" id="searchButton"  ajax="false" 
-                                     styleClass="commandButton" icon="ui-icon-search"
-                                     action="#{searchedListingController.performSearch()}" />
-                    &nbsp;&nbsp;
+                        <h:outputLabel value="Search: "/>
 
-                    <!-- CANCEL button -->
-                    <p:commandButton value="Cancel" onclick="PF('ListingSearchDialog').hide()" 
-                                     styleClass="commandButton" icon="ui-icon-cancel"/>
-                    <br /><br />
-                </div>
-            </h:form>  
+                        <!-- At least 2 characters to be searched under the selected category are entered here. -->
+                        <p:inputText id="keyword" value="#{listingController.searchString}" 
+                                     required="true" requiredMessage="Please enter a search string!">
+                            <f:validateLength minimum="2" />
+                        </p:inputText>
+                        <p:watermark for="keyword" value="Enter search string" id="watermark" />
+
+                        <!-- Search category is selected here. -->
+                        <p:selectOneMenu id="field" required="true" requiredMessage="Please select a category!" 
+                                         value="#{listingController.searchField}">
+                            <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="All" itemValue="all"/>
+                            <f:selectItem itemLabel="Appliances" itemValue="Appliances"/>
+                            <f:selectItem itemLabel="Arts &amp; Crafts" itemValue="ArtsAndCrafts"/>
+                            <f:selectItem itemLabel="Books" itemValue="Books"/>
+                            <f:selectItem itemLabel="Clothing" itemValue="Clothing"/>
+                            <f:selectItem itemLabel="Collectibles" itemValue="Collectibles"/>
+                            <f:selectItem itemLabel="Electronics" itemValue="Electronics"/>
+                            <f:selectItem itemLabel="Miscellaneous" itemValue="Miscellaneous"/>
+                            <f:selectItem itemLabel="Sports &amp; Outdoors" itemValue="SportsAndOutdoors"/>
+                            <f:selectItem itemLabel="Toys &amp; Games" itemValue="ToysAndGames"/>
+                            <f:selectItem itemLabel="Vehicles" itemValue="Vehicles"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+
+                    <h:panelGroup>
+                        <p:spacer height="10"/>
+                        <div align="center">
+                            <!-- SUBMIT button -->
+                            <p:commandButton value="Submit" icon="ui-icon-check" ajax="false" 
+                                             styleClass="commandButton" actionListener="#{listingController.search}"/> 
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="#{bundle.Cancel}" onclick="PF('ListingSearchDialog').hide()"    
+                                             styleClass="commandButton" icon="ui-icon-cancel" />
+                        </div>
+                    </h:panelGroup>
+
+                </p:panel>
+            </h:form>
+
+        </p:dialog>
+        
+        
+        <p:dialog position="center center" id="ListingBrowseDlg" widgetVar="ListingBrowseDialog" modal="true" 
+                  resizable="false" appendTo="@(body)" header="Browse Listings Directory" >
+
+            <h:form id="ListingBrowseForm">
+                <p:panel>                
+                    <h:panelGrid columns="4">
+
+                        <h:outputLabel value="Browse: "/>
+
+                        <!-- Search category is selected here. -->
+                        <p:selectOneMenu id="field" required="true" requiredMessage="Please select a category!" 
+                                         value="#{listingController.category}">
+                            <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="All" itemValue="all"/>
+                            <f:selectItem itemLabel="Appliances" itemValue="Appliances"/>
+                            <f:selectItem itemLabel="Arts &amp; Crafts" itemValue="ArtsAndCrafts"/>
+                            <f:selectItem itemLabel="Books" itemValue="Books"/>
+                            <f:selectItem itemLabel="Clothing" itemValue="Clothing"/>
+                            <f:selectItem itemLabel="Collectibles" itemValue="Collectibles"/>
+                            <f:selectItem itemLabel="Electronics" itemValue="Electronics"/>
+                            <f:selectItem itemLabel="Miscellaneous" itemValue="Miscellaneous"/>
+                            <f:selectItem itemLabel="Sports &amp; Outdoors" itemValue="SportsAndOutdoors"/>
+                            <f:selectItem itemLabel="Toys &amp; Games" itemValue="ToysAndGames"/>
+                            <f:selectItem itemLabel="Vehicles" itemValue="Vehicles"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+
+                    <h:panelGroup>
+                        <p:spacer height="10"/>
+                        <div align="center">
+                            <!-- SUBMIT button -->
+                            <p:commandButton value="Submit" icon="ui-icon-check" ajax="false" 
+                                             styleClass="commandButton" actionListener="#{listingController.browse}"/> 
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="#{bundle.Cancel}" onclick="PF('ListingBrowseDialog').hide()"    
+                                             styleClass="commandButton" icon="ui-icon-cancel" />
+                        </div>
+                    </h:panelGroup>
+
+                </p:panel>
+            </h:form>
 
         </p:dialog>
     </ui:composition>
