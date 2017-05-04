@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Christian Richardson on 2017.04.26 
+Copyright © 2017 Christian Richardson. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="template/siteTemplate.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Listing for #{listingController.selected.itemName}"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <p:panel style="text-align:center; border:none">
+
+                <h:panelGrid columns="2" columnClasses="listingPhotos,listingText" cellspacing="10px" style="width:100%">
+                    <p:galleria value="#{listingManager.getPhotos(listingController.selected.id)}" var="image" panelWidth="960" panelHeight="540" showCaption="false">
+                        <p:graphicImage value="#{image}" title="#{image}" height="540px"/>
+                    </p:galleria>
+
+                    <p:panel style="text-align:left; border:none">
+                        <h:outputText value="#{listingController.selected.itemName}" styleClass="listingTitle"></h:outputText>
+                        <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
+                                    <h:outputText value="Price:" />
+                                    <h:outputText value="#{listingController.selected.price}" style="font-weight: bold">
+                                        <f:convertNumber pattern="¤#,##0" currencySymbol="$" type="currency"/>
+                                    </h:outputText>
+
+                                    <h:outputText value="Category:" />
+                                    <h:outputText value="#{listingController.selected.category}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Description:" />
+                                    <h:outputText value="#{listingController.selected.description}" style="font-weight: bold"/>
+                                </h:panelGrid>
+                    </p:panel>
+                </h:panelGrid>
+            </p:panel>
+
+        </ui:define>
+
+    </ui:composition>
+</html>
