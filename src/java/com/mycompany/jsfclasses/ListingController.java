@@ -144,9 +144,7 @@ public class ListingController implements Serializable {
     }
 
     public List<Listing> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
     

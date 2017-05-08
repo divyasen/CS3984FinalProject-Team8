@@ -23,35 +23,107 @@ Copyright © 2017 Christian Richardson. All rights reserved.
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
 
-            <p:panel style="text-align:center; border:none">
-f
-                <h:panelGrid columns="2" columnClasses="listingPhotos,listingText" cellspacing="10px" style="width:100%">
-                    <p:galleria value="#{listingManager.getPhotos(listingController.selected.id)}" var="image" panelWidth="960" panelHeight="540" showCaption="false">
-                        <p:graphicImage value="#{image}" title="#{image}" height="540px"/>
-                    </p:galleria>
+            <div align="center">
+                <p:panel style="text-align:left; border:none;margin:auto;background-color:white">
+                    <p:panelGrid style="margin:auto;border: none">
+                        <p:column colspan="2" style="border: none; text-align:center;background-color:transparent"><h:outputText value="#{listingController.selected.itemName}" styleClass="listingTitle"></h:outputText></p:column>
+                        <p:row style="border: none">
+                            <p:column style="border: none;text-align:center">
+                                <p:galleria value="#{listingManager.getPhotos(listingController.selected.id)}" var="image" panelWidth="960" panelHeight="540" showCaption="false">
+                                    <p:graphicImage value="#{image}" title="#{image}" height="540px"/>
+                                </p:galleria>
+                            </p:column>
 
-                    <p:panel style="text-align:left; border:none">
-                        <h:outputText value="#{listingController.selected.itemName}" styleClass="listingTitle"></h:outputText>
-                        <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
-                                    <h:outputText value="Price:" />
-                                    <h:outputText value="#{listingController.selected.price}" style="font-weight: bold">
-                                        <f:convertNumber pattern="¤#,##0" currencySymbol="$" type="currency"/>
-                                    </h:outputText>
-
-                                    <h:outputText value="Category:" />
-                                    <h:outputText value="#{listingController.selected.category}" style="font-weight: bold"/>
-
-                                    <h:outputText value="Description:" />
-                                    <h:outputText value="#{listingController.selected.description}" style="font-weight: bold"/>
+                            <p:column style="border: none">
+                                <p:panel style="border: none;text-align: center;background-color:transparent">
                                     <c:if test="#{listingController.isMine()}">
-                                         <p:button outcome="EditListing" value="EditListing" icon="ui-icon-person"/>
+                                        <p:button outcome="EditListing" value="Edit Listing" icon="ui-icon-pencil"/>
+                                        <!-- 
+                                        ***************************************************
+                                        Display a Confirmation dialog for the DELETE button
+                                        *************************************************** 
+                                        -->
+                                        <h:form>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Delete Listing" 
+                                                             styleClass="commandButton" actionListener="#{listingController.destroy}" 
+                                                             action="Browse" disabled="#{empty listingController.selected}">
 
-                                         
+                                                <p:confirm header="Confirmation" 
+                                                           message="Are you sure you want to permanently delete this listing?" 
+                                                           icon="ui-icon-alert" />
+                                            </p:commandButton>
+
+                                            <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade">
+                                                <div align="center">
+                                                    <!-- The value of the first button listed below will be shown as 
+                                                    highlighted (default action) when displayed -->
+                                                    <p:commandButton value="No" type="button" 
+                                                                     styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                                    &nbsp;
+                                                    <p:commandButton value="Yes" type="button" 
+                                                                     styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                </div>
+                                            </p:confirmDialog>
+                                            <!-- 
+                                            ************************************************
+                                            End of Display of the DELETE Confirmation dialog 
+                                            ************************************************ 
+                                            -->
+                                        </h:form>
                                     </c:if>
-                                </h:panelGrid>
-                    </p:panel>
-                </h:panelGrid>
-            </p:panel>
+                                    <c:if test="#{accountManager.loggedIn}">
+                                        <c:if test="#{!listingController.isMine()}">
+                                            <h:form>
+                                                <p:commandButton action="#{editorViewManager.setText(listingController.selected.itemName, listingController.selected.price, listingController.selected.postingDate, accountManager.selected.email, accountManager.selected.phoneNumber, userController.getUser(listingController.selected.userId.id).email)}"
+                                                                 value="Contact Seller" icon="ui-icon-phone" ajax="true"/>
+                                            </h:form>
+                                        </c:if>
+                                    </c:if>
+                                </p:panel>
+                                <p:panelGrid style="border:none;vertical-align: top">
+                                    <p:row style="border: none">
+                                        <p:column style="border: none">
+                                            <h:outputText value="Seller:" />
+                                        </p:column>
+                                        <p:column style="border: none">
+                                            <h:outputText value="#{listingController.selected.userId.username}" style="font-weight: bold"/>
+                                        </p:column>
+                                    </p:row>
+
+                                    <p:row style="border: none">
+                                        <p:column style="border: none">
+                                            <h:outputText value="Price:" />
+                                        </p:column>
+                                        <p:column style="border: none">
+                                            <h:outputText value="#{listingController.selected.price}" style="font-weight: bold">
+                                                <f:convertNumber pattern="¤#,##0" currencySymbol="$" type="currency"/>
+                                            </h:outputText>
+                                        </p:column>
+                                    </p:row>
+
+                                    <p:row style="border: none">
+                                        <p:column style="border: none">
+                                            <h:outputText value="Category:" />
+                                        </p:column>
+                                        <p:column style="border: none">
+                                            <h:outputText value="#{listingController.selected.category}" style="font-weight: bold"/>
+                                        </p:column>
+                                    </p:row>
+
+                                    <p:row style="border: none">
+                                        <p:column style="border: none">
+                                            <h:outputText value="Description:" />
+                                        </p:column>
+                                        <p:column style="border: none">
+                                            <h:outputText value="#{listingController.selected.description}" style="font-weight: bold"/>
+                                        </p:column>
+                                    </p:row>
+                                </p:panelGrid>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panel>
+            </div>
 
         </ui:define>
 

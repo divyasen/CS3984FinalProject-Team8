@@ -25,6 +25,13 @@ Copyright © 2017 Zoe Smith. All rights reserved.
             <div style="text-align: center">
                 <h:form> 
 
+                    <c:if test="#{accountManager.isLoggedIn() == true}">
+                        <p:button outcome="CreateListing" value="Create a Listing" icon="ui-icon-pencil"/>
+                    </c:if>
+                    <c:if test="#{accountManager.isLoggedIn() == false}">
+                        <p:button outcome="SignIn" value="Create a Listing" icon="ui-icon-pencil"/>
+                    </c:if><br /><br />
+
                     <p:dataScroller value="#{listingController.browseItems}" var="myListing" chunkSize="10">
                         <f:facet name="header">
                             Browse Listings
@@ -37,10 +44,15 @@ Copyright © 2017 Zoe Smith. All rights reserved.
 
 
                             <p:outputPanel>
-                                <h:commandLink actionListener="#{listingController.setSelected(myListing)}" action="Listing" style="text-decoration: none" >
+                                <h:commandLink actionListener="#{listingController.setSelected(myListing)}"
+                                               action="#{listingManager.selectListing(myListing)}"
+                                               style="text-decoration: none" >
                                     <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
                                         <h:outputText value="Item Name:" />
                                         <h:outputText value="#{myListing.itemName}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Seller: " />
+                                        <h:outputText value="#{myListing.userId.username}" style="font-weight: bold"/>
 
                                         <h:outputText value="Price:" />
                                         <h:outputText value="#{myListing.price}" style="font-weight: bold">
@@ -52,22 +64,18 @@ Copyright © 2017 Zoe Smith. All rights reserved.
 
                                         <h:outputText value="Description:" />
                                         <h:outputText value="#{myListing.description}" style="font-weight: bold"/>
-
-                                        <p:commandButton action="#{editorViewManager.setText(myListing.itemName, myListing.price, myListing.postingDate, accountManager.selected.email, accountManager.selected.phoneNumber, userController.getUser(myListing.userId.id).email)}"
-                                                         value="Contact Seller" icon="ui-icon-phone" ajax="true"/>
                                     </h:panelGrid>
                                 </h:commandLink>
+                                <c:if test="#{accountManager.loggedIn == true}">
+                                        <p:panel style="border: none;text-align: left;background-color:transparent">
+                                            <p:commandButton action="#{editorViewManager.setText(myListing.itemName, myListing.price, myListing.postingDate, accountManager.selected.email, accountManager.selected.phoneNumber, userController.getUser(myListing.userId.id).email)}"
+                                                             value="Contact Seller" icon="ui-icon-phone" ajax="true"/>
+                                        </p:panel>
+                                </c:if>
                             </p:outputPanel>
                         </h:panelGrid>
                         <p:separator></p:separator>
                     </p:dataScroller>
-                    <br/>
-                    <c:if test="#{accountManager.isLoggedIn() == true}">
-                        <p:button outcome="CreateListing" value="Create a Listing" icon="ui-icon-pencil"/>
-                    </c:if>
-                    <c:if test="#{accountManager.isLoggedIn() == false}">
-                        <p:button outcome="SignIn" value="Create a Listing" icon="ui-icon-pencil"/>
-                    </c:if>
                 </h:form>
             </div>
         </ui:define>

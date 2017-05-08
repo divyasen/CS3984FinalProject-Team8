@@ -26,8 +26,8 @@ Copyright © 2017 Osman Balci. All rights reserved.
   <property name="alternatedocroot_1" value="from=/UserPhotoStorage/* dir=/home/cloudsd/Weissenberger" />
 
   -->
-<property name="alternatedocroot_1" value="from=/UserPhotoStorage/* dir=C:\\Users\\Divya Sengar" />
-<property name="alternatedocroot_2" value="from=/ListingPhotoStorage/* dir=C:\\Users\\Divya Sengar" />
+<property name="alternatedocroot_1" value="from=/UserPhotoStorage/* dir=/home/cloudsd/FileStorageLocation-Team8" />
+<property name="alternatedocroot_2" value="from=/ListingPhotoStorage/* dir=/home/cloudsd/FileStorageLocation-Team8" />
 
   <!-- Windows OS Users should use the following:
     <property name="alternatedocroot_1" value="from=/CloudStorage/* dir=C:\\users\\username" />

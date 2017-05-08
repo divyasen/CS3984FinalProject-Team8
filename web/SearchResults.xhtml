@@ -8,7 +8,8 @@ Copyright © 2016 Osman Balci. All rights reserved.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
@@ -24,6 +25,14 @@ Copyright © 2016 Osman Balci. All rights reserved.
         <ui:define name="editableContent">
             <div style="text-align: center">
                 <h:form> 
+
+                    <c:if test="#{accountManager.isLoggedIn() == true}">
+                        <p:button outcome="CreateListing" value="Create a Listing" icon="ui-icon-pencil"/>
+                    </c:if>
+                    <c:if test="#{accountManager.isLoggedIn() == false}">
+                        <p:button outcome="SignIn" value="Create a Listing" icon="ui-icon-pencil"/>
+                    </c:if><br /><br />
+
                     <p:dataScroller value="#{listingController.searchItems}" var="myListing" chunkSize="10">
                         <f:facet name="header">
                             Searched Listings
@@ -36,7 +45,9 @@ Copyright © 2016 Osman Balci. All rights reserved.
 
 
                             <p:outputPanel>
-                                <h:commandLink actionListener="#{listingController.setSelected(myListing)}" action="Listing" style="text-decoration: none" >
+                                <h:commandLink actionListener="#{listingController.setSelected(myListing)}"
+                                               action="#{listingManager.selectListing(myListing)}"
+                                               style="text-decoration: none" >
                                     <h:panelGrid columns="2" cellpadding="5" columnClasses="listingInfoText1,listingInfoText2">
                                         <h:outputText value="Item Name:" />
                                         <h:outputText value="#{myListing.itemName}" style="font-weight: bold"/>
@@ -53,12 +64,16 @@ Copyright © 2016 Osman Balci. All rights reserved.
                                         <h:outputText value="#{myListing.description}" style="font-weight: bold"/>
                                     </h:panelGrid>
                                 </h:commandLink>
+                                <c:if test="#{accountManager.loggedIn == true}">
+                                    <p:panel style="border: none;text-align: left;background-color:transparent">
+                                        <p:commandButton action="#{editorViewManager.setText(myListing.itemName, myListing.price, myListing.postingDate, accountManager.selected.email, accountManager.selected.phoneNumber, userController.getUser(myListing.userId.id).email)}"
+                                                         value="Contact Seller" icon="ui-icon-phone" ajax="true"/>
+                                    </p:panel>
+                                </c:if>
                             </p:outputPanel>
                         </h:panelGrid>
                         <p:separator></p:separator>
                     </p:dataScroller>
-                    <br/>
-                    <p:button outcome="CreateListing" value="Create a Listing" icon="ui-icon-pencil"/>
                 </h:form>
             </div>
         </ui:define>

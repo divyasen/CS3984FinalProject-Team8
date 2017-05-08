@@ -392,7 +392,7 @@ public class ListingManager implements Serializable {
 
     /*
     Update the signed-in user's account profile. Return "" if an error occurs;
-    otherwise, upon successful account update, redirect to show the Profile page.
+    otherwise, upon successful account update, redirect to show the Listing page.
      */
     public String updateListing() {
 
@@ -414,8 +414,8 @@ public class ListingManager implements Serializable {
                 statusMessage = "Something went wrong while editing user's profile! See: " + e.getMessage();
                 return "";
             }
-            // Account update is completed, redirect to show the Profile page.
-            return "MyProfile.xhtml?faces-redirect=true";
+            // Account update is completed, redirect to show the Listing page.
+            return "Listing.xhtml?faces-redirect=true";
         }
         return "";
 
@@ -424,5 +424,10 @@ public class ListingManager implements Serializable {
     public String editListing(Listing listing) {
         setSelected(listing);
         return "EditListing.xhtml?faces-redirect=true";
+    }
+    
+    public String selectListing(Listing listing) {
+        setSelected(listing);
+        return "Listing.xhtml?faces-redirect=true";
     }
 }
