@@ -42,10 +42,10 @@ public class UsernameValidator implements Validator {
         */
         
         // REGular EXpression (regex) to validate the username entered
-        String regex = "^[_A-Za-z0-9.@-]{6,32}$";
+        String regex = "^[_A-Za-z0-9.@-]{3,32}$";
         
         if (!username.matches(regex)) {
-            throw new ValidatorException(new FacesMessage("The username must be minimum 6 and maximum 32 "
+            throw new ValidatorException(new FacesMessage("The username must be minimum 3 and maximum 32 "
                     + "characters long and can contain uppercase letters, "
                     + "lowercase letters, digits 0 to 9, underscore, and hyphen."));
         } 
