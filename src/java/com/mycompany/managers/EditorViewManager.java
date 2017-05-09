@@ -1,6 +1,6 @@
 /*
  * Created by Woo Jin Kye on 2017.05.04  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Copyright © 2017 Woo Jin Kye. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -13,7 +13,6 @@ import javax.inject.Named;
 PrimeFaces HTML Text Editor UI Component
 ========================================
 Adapted from http://www.primefaces.org/showcase/ui/input/editor.xhtml 
-
 The @Named class annotation designates the bean object created in this class 
 as a Contexts and Dependency Injection (CDI) named bean. The value attribute 
 defines the logical name of the bean that can be used in JSF facelets pages. 

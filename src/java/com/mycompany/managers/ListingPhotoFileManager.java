@@ -1,6 +1,6 @@
 /*
- * Created by Osman Balci on 2017.01.28  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Created by Divya Sengar on 2017.01.28  * 
+ * Copyright © 2017 Divya Sengar. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -31,7 +31,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 /**
  *
- * @author Balci
+ * @author Sengar
  */
 public class ListingPhotoFileManager implements Serializable {
 

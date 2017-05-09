@@ -1,6 +1,6 @@
 /*
- * Created by Osman Balci on 2017.01.28  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Created by Woo Jin Kye on 2017.01.28  * 
+ * Copyright © 2017 Woo Jin Kye. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -16,7 +16,7 @@ import javax.inject.Named;
 @SessionScoped
 /**
  *
- * @author Balci
+ * @author Woo Jin Kye
  */
 public class LoginManager implements Serializable {
 

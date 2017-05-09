@@ -1,6 +1,6 @@
 /*
- * Created by Osman Balci on 2017.01.28  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Created by Travis Weissenberger on 2017.01.28  * 
+ * Copyright © 2017 Travis Weissenberger. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -35,7 +35,7 @@ import org.primefaces.model.UploadedFile;
 @SessionScoped
 /**
  *
- * @author Balci
+ * @author Weissenberger
  */
 public class PhotoFileManager implements Serializable {
 

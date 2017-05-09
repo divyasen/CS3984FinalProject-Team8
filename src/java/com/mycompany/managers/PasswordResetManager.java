@@ -1,6 +1,6 @@
 /*
- * Created by Osman Balci on 2017.01.28  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Created by Divya Sengar on 2017.01.28  * 
+ * Copyright © 2017 Divya Sengar. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -20,7 +20,7 @@ import javax.inject.Named;
 @SessionScoped
 /**
  *
- * @author Balci
+ * @author Sengar
  */
 public class PasswordResetManager implements Serializable {
 
@@ -193,6 +193,9 @@ public class PasswordResetManager implements Serializable {
         }
     }
 
+    /**
+     * Reset the password for the given user.
+     */
     public String resetPassword() {
 
         if (message == null || message.isEmpty()) {

@@ -357,12 +357,22 @@ public class ListingManager implements Serializable {
         }
     }
 
+    /**
+     * Return only the first listing photo. 
+     * @param listingId the id of the listing
+     * @return The string of the first listing photo
+     */
     public String getSinglePhoto(int listingId) {
         ListingPhoto list = getListingPhotoFacade().findPhotosByListingID(listingId).get(0);
         String temp = Constants.LISTING_PHOTOS_RELATIVE_PATH + listingId + "_0." + list.getExtension();
         return temp;
     }
 
+    /**
+     * Return all photos for a given listing.
+     * @param listingId the id of the listing
+     * @return A list of the strings for the photos for the listing.
+     */
     public List<String> getPhotos(int listingId) {
         List<ListingPhoto> list = getListingPhotoFacade().findPhotosByListingID(listingId);
         List<String> answer = new ArrayList<String>();
@@ -372,6 +382,10 @@ public class ListingManager implements Serializable {
         return answer;
     }
 
+    /**
+     * Get all photos of all listings.
+     * @return A list of the strings for all photos.
+     */
     public List<String> getAllPhotos() {
         List<ListingPhoto> list = getListingPhotoFacade().findAllPhotos();
         List<String> answer = new ArrayList<String>();
@@ -420,12 +434,22 @@ public class ListingManager implements Serializable {
         return "";
 
     }
-
+   
+    /**
+     * Edit a given listing.
+     * @param listing the listing to be edited.
+     * @return Whether the listing was successfully updated.
+     */
     public String editListing(Listing listing) {
         setSelected(listing);
         return "EditListing.xhtml?faces-redirect=true";
     }
     
+    /**
+     * Select a given listing.
+     * @param listing the listing to be selected.
+     * @return Whether the listing was successfully successfully.
+     */
     public String selectListing(Listing listing) {
         setSelected(listing);
         return "Listing.xhtml?faces-redirect=true";

@@ -1,6 +1,6 @@
 /*
  * Created by Woo Jin Kye on 2017.05.04  * 
- * Copyright © 2017 Osman Balci. All rights reserved. * 
+ * Copyright © 2017 Woo Jin Kye. All rights reserved. * 
  */
 package com.mycompany.managers;
 
@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  *
- * @author Balci
+ * @author Woo Jin Kye
  */
 @Named(value = "emailSenderManager")
 @RequestScoped
